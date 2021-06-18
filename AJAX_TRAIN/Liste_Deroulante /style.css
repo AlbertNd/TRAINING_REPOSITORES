@@ -1,0 +1,12 @@
+.monSite{
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+header{
+    text-align: center;
+    padding: 10px;
+}
+article{
+    text-align: center;
+}
