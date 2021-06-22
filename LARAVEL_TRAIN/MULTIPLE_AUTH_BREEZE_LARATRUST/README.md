@@ -53,5 +53,7 @@
     2. Dans le fichier `app/Http/Controllers/Auth/RegisterUserController.php`
         - en dessous de `Auth::login($user = .....);`
             - Coller `$user->attachRole($admin);`
-                - Pour l'attribution de role on utilisera le **name** ou l'**id** de la database `attachRole('name or id ')` (par exemple $user->attachRole('user');ou alors $user->attachRole('2');)
-    **NB** A partir de là lorsqu'on va creerun nouvel utilisateur, laratrust va lui attribuer automatiquement le role d'un simple utilisateur dans l'application.
+                - Pour l'attribution de role on utilisera le **name** ou l'**id** de la database `attachRole('name or id ')` 
+                par exemple `$user->attachRole('user');` ou alors `$user->attachRole('2');`)
+
+    **NB:** A partir de là lorsqu'on va creerun nouvel utilisateur, laratrust va lui attribuer automatiquement le role d'un simple utilisateur dans l'application.
