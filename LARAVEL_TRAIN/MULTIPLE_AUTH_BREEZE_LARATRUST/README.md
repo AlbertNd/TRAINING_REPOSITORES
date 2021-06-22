@@ -125,11 +125,17 @@
 
                     @if(Auth::user()-> hasRole('user'))
                         Lien visible uniquement pour les utilisateur de type user
+                        (NB: Pas oublier de changer les routes, creer les methodeset adapter leur views en fonction des role: web.php)
                     @endif
                     @if(Auth::user()-> hasRole('autre'))
                         Lien visible uniquement pour les utilisateur de type autre
+                        (NB: Pas oublier de changer les routes, creer les methodes et adapter leur views en fonction des role: web.php)
                     @endif
                     @if(Auth::user()-> hasRole('admin'))
                         Lien visible uniquement pour les utilisateur de type administrateur
+                        (NB: Pas oublier de changer les routes, creer les methodes et adapter leur views en fonction des role: web.php)
                     @endif
                 ```
+8. Customisattion de la page de l'erreur 404:
+    - Dans le fichier `config/laratrust.php`
+        - Ligne 187 : 'message'
