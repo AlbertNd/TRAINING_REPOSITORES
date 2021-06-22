@@ -136,6 +136,6 @@
                         (NB: Pas oublier de changer les routes, creer les methodes et adapter leur views en fonction des role: web.php)
                     @endif
                 ```
-8. Customisattion de la page de l'erreur 404:
+8. Customisation de la page de l'erreur 404:
     - Dans le fichier `config/laratrust.php`
         - Ligne 187 : 'message'
