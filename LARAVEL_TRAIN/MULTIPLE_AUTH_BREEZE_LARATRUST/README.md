@@ -57,3 +57,79 @@
                 par exemple `$user->attachRole('user');` ou alors `$user->attachRole('2');`)
 
     **NB:** A partir de là lorsqu'on va creerun nouvel utilisateur, laratrust va lui attribuer automatiquement le role d'un simple utilisateur dans l'application.
+7. attribution, sur le meme dashboard, des different menu en fonction du type d'utilisateur 
+    1. Dans le dossier Routes:
+        1. Le fichier `web.php`
+            1. Modification de la route qui s'y trouve deja
+                -   ```
+                        Route::group(['middleware' => ['auth']], function(){
+                            Route::get('/dashboard','App\Http\Controllers\DashboardController@index')->name('dashboard');
+                        });   
+                    ```
+    2. Creation du controller : `DashboardController`
+        1. Dans le terminale :
+            - `php artisan make:controller DashboardController`
+    3. Creation de la methode: `index`
+        1. Dans le fichier `Http/Controller/Auth/DashboardController.php`
+            - Dans la classe `DashboardController`:
+                - C'est ici que l'on doit decider si l'utilisateur est juste un simple utilisateur ou si il faut lui attribuer d'autres roles afin de pouvoir montre differente pages en fonction du type de l'utilisateur
+                - [Roles & Permissions](https://laratrust.santigarcor.me/docs/6.x/usage/roles-and-permissions.html#setting-things-up)
+                    - [Checking for Roles & Permissions](https://laratrust.santigarcor.me/docs/6.x/usage/roles-and-permissions.html#checking-for-roles-permissions)
+
+                -   ```
+                        public function index(){
+                            if(Auth::user()->hasRole('user')){
+                                return view('userdashboard')
+                            }elseif(Auth::user()->hasRole('autre')){
+                                return view('autredashboard')
+                            }elseif(Auth::user()->hasRole('admin')){
+                                return view('dashboard')
+                            }
+                        }
+                    ```
+    4. Creation des views qui seront accessible en fonction du type de l'utilisateur
+        - Dans le dossier `ressource/views`
+            - Pour une question de faciliter on copie coller le contenu de la page dashoarde de base que l'on poura modifier à notre guise
+    5. Pour etre sur de pouvoir importer la la classe d'Auth dans la fonction index, Vrifier si on a bien la ligne : **use Illuminate\Support\Facades\Auth** dans le controller `DashaboardController`
+    6. Le menu :
+        1. dans le fichier :`ressource/views/layouts/navigation.blade.php` se trouve le maenu ar defaut. section `<!-- Navigation Links -->`
+        2. Pour la creation d'un second lien, il suffit de copier coller le lien present et de l'adapter en fonction.
+            - Modifiier le route :  ```
+                                        href="route('dashboard.myprofile')" ...->routeIs('dashboard.myprofile')">`
+                                        {{__('My profile')}}
+                                    ```
+        3. Creation de la route `doshboard.myprofile` en specifiant quel type d'utilisateur peuvent voir le lien.
+            1. Dans le fichier `routes/web.php`:
+                1.  route pour profile d'utilisateur authentifié en tant que utilisateur:
+                    -   ```
+                            Route::group(['middleware' => ['auth','role:user']], function(){
+                                Route::get('/dashboard/myprofile','App\Http\Controllers\DashboardController@myprofile) -> name('dashboard.myprofile');
+                            });
+                        ``` 
+            2. Creation de la methode `myprofile`
+                1. Das le DashboardController:
+                    -   ```
+                            public function myprofile(){
+                                return views('myprofile');
+                            }
+            3. Creation de la views `myprofile`
+                1. Dans le dossier views
+                    - Pour une question de simpliciter on peut copier et coller le contenu da la views dashabord par defaut et ensuite l'adapter
+                    - Si l'on souhater afficher le nom et le mail de l'utilisateur:
+                        - `{{Auth::user()->name}} <br> {{Auth::user()-email}}`
+    7.  Limitation de la vision du menu des liens en fonction du type d'utilisateur 
+        1. dans le fichier `ressource/views/layouts/navigation.blade.php`:
+            - On y met les condition **@if ...@endif**
+            -   ```
+                    Lien visible par tous 
+
+                    @if(Auth::user()-> hasRole('user'))
+                        Lien visible uniquement pour les utilisateur de type user
+                    @endif
+                    @if(Auth::user()-> hasRole('autre'))
+                        Lien visible uniquement pour les utilisateur de type autre
+                    @endif
+                    @if(Auth::user()-> hasRole('admin'))
+                        Lien visible uniquement pour les utilisateur de type administrateur
+                    @endif
+                ```
