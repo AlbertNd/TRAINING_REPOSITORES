@@ -1,4 +1,5 @@
 ## Etapes de creation d'un composant
+[tuto youtube](https://www.youtube.com/watch?v=VJ1yeoJqpr0&list=PLcpCZL_oOP_5GcxuvMDx1PELWqLV1txf6&index=1&t=352s)
 
 1. Dans le terminale:
     - `php artisan make:component nom_du_composant` 
@@ -31,3 +32,65 @@
                 - Dans ce cas on nettoie le residu de la view :`php artisan view:clear`
             3. Pour mettre le message dans le view:
                 - {{ $message }} ou dans une "div"
+            4. pour y inclure un message d'erreur par exemple:
+                - Rajout d'une autre paramettre:
+                    1. `<x-nom_du_composant message="le message à diffuser" type="error"/>`
+                    2. Dans le constructeur on y rajoute le deuxieme paramettre 
+                        -   ```
+                                public function __construct($message, $error){
+                                    $this->message = $message;
+                                    $this->type=$type;
+                                }
+                            ```
+                        - Definition de la variable dans la class
+                        - `public $type`
+                    3. rejout d'une methode de gestion d'action en fonction d'error par exemple changement du de la couleur du back ground (rouge si error et verte si pas d'erreur et/ou par defaut):
+                        -   ```
+                                public fucntion typeClass(){
+                                    if($this->type === 'error){
+                                        return 'bg-red-600 text-white';
+                                    }
+                                    return 'bg-green-600 text-white'
+                                }
+                            ```
+                    4. Rajout de la methode dans la div cible: 
+                        - `<div class="flex items-center justify-between px-6 py-4 rounded {{ $typeClass()}}"> ..... </div>`
+                    5. Pour rendre le paramettre optionnel : 
+
+                        -   ```
+                                public function __construct($message, $error = null){
+                                    $this->message = $message;
+                                    $this->type=$type;
+                                }
+                            ```
+
+        2. Passe la variable de aniere plus dinamique c'est à dire pas dans la balise:
+            - Rajout de "**:**" avant la variable dans la balise.
+            - Rajout d'un guillemet car c'est du php ( pour declarer un string) 
+                - `<x-nom_du_composant :message="'le message à diffuser'" type="error"/>`
+            - Passer n'importe quelle variable: 
+                - `<x-nom_du_composant :message="session('activeNav')" type="error"/>`
+                    - **NB** : le session('activeNav') provient du controlleur Home  dans la fonction index  
+        
+        3. Le **slot** pour dans le cas ou on ne veut pas passer les message par la voie precedente.
+            - Dans le fichier de depart: 
+
+            ```
+                <x-nom_du_composant>
+                contenu à afficher dans la vue 
+                </x-nom_du_composant>
+
+            ```
+            - Dans la vue: 
+
+            ```
+                <div>
+                {{$slot}} 
+                </div>
+
+            ```
+6. Organisation des composant dans different dossiers 
+    - Dans la fonction render()
+        - return view('components.dossier_souhaité.nom_du_composant)
+    - Via le trminal :
+        - php artisan make:component Dossier_souhaité/nom_composant
