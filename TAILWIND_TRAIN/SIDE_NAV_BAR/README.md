@@ -31,7 +31,7 @@
 2. La "div" de la side par.
 
     -   ```
-            <div class="bg-blue-800 text-blue-100 w-64 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out">
+            <div class="side-bar bg-blue-800 text-blue-100 w-64 space-y-6 px-2 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
                 <nav>...</nav>
             </div>
         ```
@@ -48,7 +48,17 @@
         5. **-translate-x-full**: transition d'un element en activant d'abord les transformation avec l'utilitaire transform, puis en spécifiant la direction et la distance de la translation à l'aide des utilitaires translate-x-... et translate-y-... (ici translation negative et toute la div disparait vers la gauche) [voir doc](https://tailwindcss.com/docs/translate).
         6. **transition**: transition de d'un etat à un autre.[voir doc](https://tailwindcss.com/docs/transition-property).
         7. **duration**: durée de la transition. [voir doc](https://tailwindcss.com/docs/transition-duration).
-        8.**ease-in-out**: Permet de controler la transition dans les deux sens.[voir doc](https://tailwindcss.com/docs/transition-timing-function)
+        8. **ease-in-out**: Permet de controler la transition dans les deux sens.[voir doc](https://tailwindcss.com/docs/transition-timing-function)
+        9. **side-bar** : voir section boutton plus bas 
+
+    
+    - **Pour permettre à la side bare d'etre responsive (affichage et caché), il faut retirer (donc l'aide du button)**
+        1. **absolute**
+        2. **-translate-x-full**
+
+            - Pour ce faire,lorsque la taille de l'ecran et inferieur 768px, on rajoute les classe: 
+                1. **relative**: donc elle n'est plus absolute. [voir doc](https://tailwindcss.com/docs/position).
+                2. **translate-x-0**: La translation n'est plus negative.[voir doc](https://tailwindcss.com/docs/translate).
 
 
 3. La "div" du contenu de la page 
@@ -117,15 +127,36 @@
             ```
             1. **bg-gray-...** : couleur du background.
             2. **text-gray-...**: coueur du text.
+            3. **md:hidden**: Permet de cacher le bouton lorsque la taille de la page devient plus grande que 768px. [voir doc responsive](https://tailwindcss.com/docs/responsive-design).
+    
     1. conception: 
         -   ```
                 <div class="bg-gray-800 text-gray-100 flex justify-between">
                     // le logo
                     <a href="#" class="block p-4 text-white font-bold"> titre</a>
                     // button de la barre de menu
-                    <button class="p-4 focus:outline-none focus:bg-gray-700">
+                    <button class="menu-boutton p-4 focus:outline-none focus:bg-gray-700">
                         svg class=" w-5 h-5 xmlns......">
                             <path ........ />
                         </svg>
                     </button>
                 </div>
+            ```
+            1. **focus**: permet d'applique un utilitaire au moment de la mise au point [voir doc](https://tailwindcss.com/docs/hover-focus-and-other-states)
+            2. **outline-none** : mpermet de masquer le contour du navigateur par defout sur l'element ciblé. [voir doc](https://tailwindcss.com/docs/outline).
+    2. **Pour rendre le boutton fonctionnel il faut faire appelle à javascript**
+        - Pour se faire. 
+            - On nomme le boutton: 
+                - **menu-boutton**
+            - On nomme la div de la side bar: 
+                - **side-bar**
+        - **Dans le fichier JS**
+            - On tirer ce que l'on a besoin et ensuite on rajoute un event pour le click sur le boutton: 
+                -   ```
+                        const btn = document.querySelector('menu-boutton');
+                        const siderbar=document.querySelector('side-bar');
+
+                        btn.addEventListener("click",()=>{
+                            siderbar.classList.toggle("-translate-x-full);
+                        });
+                    ```
