@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,4 +22,8 @@ class Post extends Model
     {
         return $this->belongsTo(Categorie::class);
     }
+    //public function getTitreAttribute($attribute)
+    //{
+    //    return Str::titre($attribute);
+    //}
 }
