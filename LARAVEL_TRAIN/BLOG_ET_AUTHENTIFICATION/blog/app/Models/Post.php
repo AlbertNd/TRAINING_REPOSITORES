@@ -22,8 +22,8 @@ class Post extends Model
     {
         return $this->belongsTo(Categorie::class);
     }
-    //public function getTitreAttribute($attribute)
-    //{
-    //    return Str::titre($attribute);
-    //}
+    public function getTitleAttribute($attribute)
+    {
+       return Str::title($attribute);
+    }
 }

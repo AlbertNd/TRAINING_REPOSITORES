@@ -26,6 +26,7 @@
         - Post.php
         - User.php 
 4. Definition des champs souhaité pour les tables **(Dans migartions)**: 
+    -  **NB: LES TITRES DE CHAMPS EN ANGLAIS** 
     - la table post *(pas oublier d'importer les class)*: 
         -   ```
             Use App\Models\User;
@@ -33,7 +34,7 @@
 
                  Schema::create('posts', function (Blueprint $table) {
                     $table->id();
-                    $table->string('titre');
+                    $table->string('title');
                     $table->text('contenu');
                     $table->string('image');
                     $table->timestamps();
@@ -121,8 +122,8 @@
                 public function definition()
                 {
                     return [
-                        'titre' => $this->faker->sentence(rand(5,10),true),
-                        'contenu'=> $this->faker->sentence(5,true),
+                        'title' => $this->faker->sentence(rand(5,10),true),
+                        'contenu'=> $this->faker->sentences(15,true),
                         'image'=>'http://via.placeholder.com/1000'
                     ];
                 }
@@ -444,8 +445,15 @@
             - Création d'une fonction:  
                 - Pas oublier d'importer la fonction souhahité
                 -   ```
-                        public function getTitreAttribute ($attribute)
+                        public function getTitleAttribute ($attribute)
                         {
-                            return Str:titre($attribute);
+                            return Str:title($attribute);
                         }
                     ```
+    - Si on souhaite avoir une limite sur le contenu 
+        - Soit directement dans le vue
+            - `{{Str::limit($post->contenu,120)}}`
+        - Soit via le models comme precedement 
+
+5. Recuperation de l'utilisateur *Le nom de l'auteur du post*
+    - Dans **models/post.php**
