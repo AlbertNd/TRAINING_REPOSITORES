@@ -40,7 +40,9 @@
                             </div>
                             <div class="flex items-center justify-between mt-4"><a href="#" class="text-blue-500 hover:underline">Read more</a>
                                 <div><a href="#" class="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80" alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                        <h1 class="font-bold text-gray-700 hover:underline">Alex John</h1>
+                                        <h1 class="font-bold text-gray-700 hover:underline">
+                                            {{$post->user->name}}
+                                        </h1>
                                     </a></div>
                             </div>
                         </div>

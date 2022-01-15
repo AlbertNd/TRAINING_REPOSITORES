@@ -237,7 +237,20 @@
                 - On lui defini un nom: 
                     - `Route::get(['/',PostController::class,'index'])->name('post.index')`
                         - vérification pour etre sur `php artisan route:list --name=post`. 
+**NB: Penser a englober le route dans un middelware pour éviter que les utilisateur non connectés puis acceder au differentes methode en dehors de l'index**
+-   On fait un route middleware et on lui passe le middlware **Auth** et ensuite on groupe les route à l'interieur de sa fonction 
+    -   ```
+        Route::middleware(['auth'])->group(function(){
 
+            Route::resource('posts',PostController::class)->except('index');
+
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+        });
+
+        ```
+        - **NB:** Pas oublier de retire middelware du route Dashboard
 2. Configuratiopn de la class index 
     - Dans le PostController: 
         -   ```
@@ -455,5 +468,63 @@
             - `{{Str::limit($post->contenu,120)}}`
         - Soit via le models comme precedement 
 
-5. Recuperation de l'utilisateur *Le nom de l'auteur du post*
+5. Recuperation de l'utilisateur *C'est toujours via les relations* 
     - Dans **models/post.php**
+        - On va appeller un **user**
+            - Pour eviter qu'il fasse autant de requete qu'il y a items 
+                - Dans **PostController**:
+                    -   ```
+                            public function index()
+                            {
+                                $posts = Post::with('categorie','user')->get();
+                                return view('post.index',compact('posts'));
+                            }
+                        ``` 
+##### Création des post 
+
+1. Dans le le controller **PostController**:
+    - La methode **create**
+        - Definition de la vue permattant de creer le post: 
+            -   ```
+                    public function create()
+                    {
+                        return view('post.create');
+                    }
+                ```
+2. Creation du formulaire. 
+    - Dans resources/post/views
+        - On y cree la view `create.blade.php`
+            -   ```
+                    <x-app-layout>
+                        <x-slot name="header">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                {{ __('Créer un post') }}
+                            </h2>
+                        </x-slot>
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                         
+                         // le formulaire 
+                        
+                        </div>
+                    </x-app-layout>
+                ```
+2. Creation du formulaire: 
+    1. La méthode de reference : *post*
+        - `method="post"`
+    2. l'action *On a une route*: *posts.store* l'action qui sera demander lors de la creation
+        - `action="{{route('posts.store')}}"`
+    3. Traitement des image:
+        - `enctype="multipart/form-data"`
+    4. Configuration des image.
+        - Dans le dossier **Config**
+            - Fichier `filesystems.php`
+                1. Par defaut il y est mis en **local**
+                2. il y a egalement une variable **FILESYSTEM_DRIVER** qui va ecraser cette local si on on defini quelque chose dans le fichier **env**
+                3. On va utiliser la clef **public** car elle permet de voir les images/fichiers qui sont stocker dans ce fichier là sans y avoir accé pour autant 
+                    1. Dans fichier **.env**
+                        - `FILESYSTEM_DRIVE => local` ==> `FILESYSTEM_DRIVE => public`
+                            - ainsi le systeme de fichier sera lier au storage passe root
+                            - Pour que les utilisateur puisse avoir accé a ce dossier public là, dans storage, vu qu'il est au dessus du niveau public, on aura besoin de faire un :
+                                - `php artisan storage:link` *our lier le storage au dossier public (dans pubic on a un refle du dossier storage)*
+    5. le formulaire :
+        1. on utilise 
