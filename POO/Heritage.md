@@ -110,7 +110,7 @@
             -   **Administrateur extends Utilisateur**
                 - ***Ici les administrateurs beneficieront des toutes les propriétés et méthodes de la classe Utilisateur*** : Un administrateur **est un** utilisateur avec des droits spécifiques.
         - #### (On crée d'abord la classe parent et ensuite les enfents et petits enfants).
-        - #### (Les propriété de la classe parent doivent etre public)
+        - #### (Les propriétés de la classe parent doivent etre public)
         -   ```
             <?php
                 declare(strict_types=1);
