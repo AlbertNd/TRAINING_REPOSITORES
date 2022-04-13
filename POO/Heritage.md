@@ -175,3 +175,6 @@
             var_dump($Albert_Adm);
             ```
 
+4. #### Les propriétés statiques 
+    - Dépuis la classe enfant, on peut faire référence aux memes propriétés statiques que les parent. 
+    Ceci fonctionne en **cascade**:
