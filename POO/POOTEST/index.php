@@ -1,71 +1,65 @@
 <?php
+            declare(strict_types=1);
+            class Utilisateur
+            {
+            public const STATUS_ACTIVE ='ACTIVE';
+            public const STATUS_INACTIVE ='INACTIVE';
+            public string $Username;
+            public string $Status; 
 
-declare(strict_types=1);
-class Utilisateur
-{
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_INACTIVE = 'inactive';
-    public string $Username;
-    public string $Status;
+            public static $nombreUtilisateur = 0;
 
-    public function __construct(string $username, string $status = self::STATUS_ACTIVE)
-    {
-        $this->Username = $username;
-        $this->Status = $status;
-    }
+            public function __construct(string $username, string $status = self::STATUS_ACTIVE){
+                $this->Username = $username; 
+                $this->Status = $status;
+                self::$nombreUtilisateur++;
+            }
 
-    public function setUsername(string $username): void
-    {
-        $this->Username = $username;
-    }
+            public function setUsername(string $username):void{
+                $this->Username=$username;
+            }
+            public function getUsernema():string{
+                return $this->Username;
+            }
+            public function setStatus(string $status):void{
+                $this->Status=$status;
+            }
+            public function getStatus():string{
+                return $this->Status;
+            }
+            }
+            class Administrateur extends Utilisateur
+            {
+                private array $Role=[];
 
-    public function getUsername(): string
-    {
-        return $this->Username;
-    }
+                public static $nombreAdministrateur =0;
 
-    public function setStatus(string $status): void
-    {
-        $this->Status = $status;
-    }
+                public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
+                    $this->Username=$username;
+                    $this->Role=$role;
+                    parent::$nombreUtilisateur++;
+                    self::$nombreAdministrateur++;
+                }
 
-    public function getStatus(): string
-    {
-        return $this->Status;
-    }
-}
-class Administrateur extends Utilisateur
-{
-    private array $Role = [];
+                public function ajoutRole(string $role):void{
+                    $this->Role[]=$role;
+                    $this->Role = array_filter($this->Role);
+                }
 
-    public function __construct(string $username, string $status = self::STATUS_ACTIVE, array $role = [])
-    {
-        $this->Role = $role;
-    }
-
-    public function ajoutRole(string $role)
-    {
-        $this->Role[] = $role;
-        $this->Role = array_filter($this->Role);
-    }
-
-    public function setRole(string $role): void
-    {
-        $this->Role = $role;
-    }
-
-    public function getRole(): array
-    {
-        $role = $this->Role;
-        $role[] = 'ADMIN';
-
-        return $role;
-    }
-}
-$Albert_Uti = new Utilisateur('albert_Uti');
-$Albert_Uti->setStatus('inactive');
-$Albert_Adm = new Administrateur('albert_Adm');
-$Albert_Adm->ajoutRole('Administrateur');
-$Albert_Adm->setStatus('inactive');
-var_dump($Albert_Uti);
-var_dump($Albert_Adm);
+                public function setRole(string $role):void{
+                    $this->Role=$role;
+                }
+                public function getRole():array{
+                    $role=$this->Role;
+                    $role[]='ADMINISTRATEUR';
+                    
+                    return $role; 
+                }
+            }
+            $Utilisateur = new Utilisateur('Albert_UTI');
+            $Utilisateur -> setStatus('INACTIVE');
+            var_dump($Utilisateur,Utilisateur::$nombreUtilisateur);
+            $Administrateur = new Administrateur('Albert_ADM');
+            $Administrateur -> setStatus('INATIVE');
+            $Administrateur -> ajoutRole('VOILA');
+            var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
