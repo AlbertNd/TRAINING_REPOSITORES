@@ -259,7 +259,12 @@
             1. **public** accès à tous
             2. **private** fermer à tous
             3. **protected** permet de fermer à l'extérieur, mais ouvrir à l'héritage.
-    -   ```
+    - Ce qui est declarer en protected:
+        - ***Les constantes***
+        - ***Les propriétés***
+    - ***LEs mutateur et les accesseurs doivent rester en public***
+    
+        ```
         <?php
             declare(strict_types=1);
             class Utilisateur
@@ -328,4 +333,4 @@
             var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
 
         ```
-    - 
+    
