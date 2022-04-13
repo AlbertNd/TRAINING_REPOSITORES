@@ -147,7 +147,10 @@
                     private array $Role=[];
 
                     public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
+                        $this->Username=$username;
+                        $this-Status=$status;
                         $this->Role=$role;
+
                     }
 
                     public function ajoutRole(string $role){
@@ -220,6 +223,7 @@
 
                 public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
                     $this->Username=$username;
+                    $this->Status=$status;
                     $this->Role=$role;
                     parent::$nombreUtilisateur++;
                     self::$nombreAdministrateur++;
@@ -294,6 +298,7 @@
 
                 public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
                     $this->Username=$username;
+                    $this->Status=$status;
                     $this->Role=$role;
                     parent::$nombreUtilisateur++;
                     self::$nombreAdministrateur++;
@@ -323,3 +328,4 @@
             var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
 
         ```
+    - 
