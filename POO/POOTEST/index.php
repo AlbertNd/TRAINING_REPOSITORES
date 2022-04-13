@@ -2,10 +2,10 @@
             declare(strict_types=1);
             class Utilisateur
             {
-            public const STATUS_ACTIVE ='ACTIVE';
-            public const STATUS_INACTIVE ='INACTIVE';
-            public string $Username;
-            public string $Status; 
+            protected const STATUS_ACTIVE ='ACTIVE';
+            protected const STATUS_INACTIVE ='INACTIVE';
+            protected string $Username;
+            protected string $Status; 
 
             public static $nombreUtilisateur = 0;
 

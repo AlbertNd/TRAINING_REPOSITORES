@@ -248,3 +248,78 @@
             $Administrateur -> ajoutRole('VOILA');
             var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
         ```
+    - ***NB: Les propriété statique sont PUBLIC***
+5. #### Autorisation d'accès aux propiétes et methodes (uniquement aux enfants)
+    - Cette autorisation s'applique par le biais du mot clé **protected**
+        - **note:**
+            1. **public** accès à tous
+            2. **private** fermer à tous
+            3. **protected** permet de fermer à l'extérieur, mais ouvrir à l'héritage.
+    -   ```
+        <?php
+            declare(strict_types=1);
+            class Utilisateur
+            {
+            protected const STATUS_ACTIVE ='ACTIVE';
+            protected const STATUS_INACTIVE ='INACTIVE';
+            protected string $Username;
+            protected string $Status; 
+
+            public static $nombreUtilisateur = 0;
+
+            public function __construct(string $username, string $status = self::STATUS_ACTIVE){
+                $this->Username = $username; 
+                $this->Status = $status;
+                self::$nombreUtilisateur++;
+            }
+
+            public function setUsername(string $username):void{
+                $this->Username=$username;
+            }
+            public function getUsernema():string{
+                return $this->Username;
+            }
+            public function setStatus(string $status):void{
+                $this->Status=$status;
+            }
+            public function getStatus():string{
+                return $this->Status;
+            }
+            }
+            class Administrateur extends Utilisateur
+            {
+                private array $Role=[];
+
+                public static $nombreAdministrateur =0;
+
+                public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
+                    $this->Username=$username;
+                    $this->Role=$role;
+                    parent::$nombreUtilisateur++;
+                    self::$nombreAdministrateur++;
+                }
+
+                public function ajoutRole(string $role):void{
+                    $this->Role[]=$role;
+                    $this->Role = array_filter($this->Role);
+                }
+
+                public function setRole(string $role):void{
+                    $this->Role=$role;
+                }
+                public function getRole():array{
+                    $role=$this->Role;
+                    $role[]='ADMINISTRATEUR';
+                    
+                    return $role; 
+                }
+            }
+            $Utilisateur = new Utilisateur('Albert_UTI');
+            $Utilisateur -> setStatus('INACTIVE');
+            var_dump($Utilisateur,Utilisateur::$nombreUtilisateur);
+            $Administrateur = new Administrateur('Albert_ADM');
+            $Administrateur -> setStatus('INATIVE');
+            $Administrateur -> ajoutRole('VOILA');
+            var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
+
+        ```
