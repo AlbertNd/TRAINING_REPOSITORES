@@ -262,7 +262,7 @@
     - Ce qui est declarer en protected:
         - ***Les constantes***
         - ***Les propriétés***
-    - ***LEs mutateur et les accesseurs doivent rester en public***
+    - ***Les mutateurs et les accesseurs doivent rester en public***
     
         ```
         <?php
@@ -333,4 +333,6 @@
             var_dump($Administrateur, Administrateur::$nombreAdministrateur,Utilisateur::$nombreUtilisateur);
 
         ```
-    
+6. #### L'abstraction.
+    - Supposons que nous avons des **Utilisateaur** qui sont soit **Administrateur** soit **Joueur**. et que l'idée serait de ne pas instancier la classe ***Utilisateur*** seule et par conséquent de forcer son héritage.
+    - Supposons que l'on souhaite garantir un usage particulier, mais laisser les classes enfants decider de la maniére dont le code doit fonctionner. 
