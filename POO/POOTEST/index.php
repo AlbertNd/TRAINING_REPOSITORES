@@ -5,21 +5,21 @@
                         protected const STATUS_ACTIVE='ACTIVE';
                         protected const STATUS_INACTIVE='INACTIVE';
 
-                        protected string $Username;
+                        protected string $Mail;
                         protected string $Status; 
 
                         Public static $nombreUtilisateur = 0;
 
-                        public function __construct(string $username, string $status=self::STATUS_ACTIVE){
-                            $this->Username=$username;
+                        public function __construct(string $mail, string $status=self::STATUS_ACTIVE){
+                            $this->Mail=$mail;
                             $this->Status=$status;
                         }
-                         public function setUsername(string $username):void{
-                             $this->Username = $username;
+                         public function setMail(string $mail):void{
+                             $this->Mail = $mail;
                          }
-                         public function getUsername():string{
-                             return $this->Username;
-                         }
+                        // la methodes abstrait 
+
+                        abstract public function getUsername():string;
 
                          public function setStatus(string $status):void{
                              $this->Status=$status;
@@ -34,8 +34,8 @@
 
                                 public static $nombreAdm=0;
 
-                                public function __construct(string $username, string $status=self::STATUS_ACTIVE, array $role=[]){
-                                    parent::__construct($username,$status);
+                                public function __construct(string $mail, string $status=self::STATUS_ACTIVE, array $role=[]){
+                                    parent::__construct($mail,$status);
                                     $this->Role=$role;
                                     parent::$nombreUtilisateur++;
                                     self::$nombreAdm++;
@@ -55,17 +55,27 @@
 
                                     return $role;
                                 }
+
+                                // la méthode relier à labstrait parent 
+
+                                public function getUsername():string{
+                                    return $this->Mail;
+                                }
                             }
                              class Joueur extends Utilisateur
                             {
                                 protected const Role='JOUEUR';
                                 protected string $Role;
 
+                                private string $Username;
+
                                 public static $nombreJe = 0;
 
-                                public function __construct(string $username, string $status=self::STATUS_ACTIVE, string $role=self::Role){
-                                    parent::__construct($username,$status);
+                                public function __construct(string $username, string $mail, string $status=self::STATUS_ACTIVE, string $role=self::Role){
+                                    parent::__construct($mail,$status);
                                     $this->Role=$role;
+                                    $this->Mail = $mail;
+                                    $this->Username=$username;
                                     parent::$nombreUtilisateur++;
                                     self::$nombreJe++;
                                 }
@@ -77,11 +87,19 @@
                                 public function getRole(){
                                     return $this->Role;
                                 }
+
+                                // la méthode relier à labstrait parent 
+
+                                public function getUsername():string{
+                                    return $this->Username;
+                                }
                             }
-                            $Adm = new Administrateur('Albert_ADM');
+                            $Adm = new Administrateur('Albert@gmail.com');
                             $Adm-> ajoutRole('Role NV');
                             $Adm ->getRole();
                             $Adm -> setStatus('STATUS NV');
-                            $Joueur = new Joueur('Albert_JEU');
+                            $Joueur = new Joueur('Albert_jeu','Albert@gmail.com');
                             $Joueur -> setStatus('INACTIVE');
                             var_dump($Adm,$Joueur,Joueur::$nombreJe, Administrateur::$nombreAdm, Utilisateur::$nombreUtilisateur);
+                            echo $Joueur->getUsername()."\n";
+                            echo $Adm->getUsername();
