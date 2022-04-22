@@ -1,4 +1,4 @@
-# Structuration des filchier, des classes, et du code. 
+# Structuration des filchiers, des classes, et du code. 
 
 1. #### Les espaces de nom (namespace). 
     - Les espaces de nom permettent de regrouper des classes sous un meme nom. 
@@ -62,3 +62,45 @@
                 ```
                     $date = new \ DateTime();
                 ```
+    - Il est aussi pissible d'encapsuler les espaces de noms avec des accolades. 
+        - ***Dans ce cas il fau aussi encapsuler les instanciation***
+            ```
+                declare(strict_types=1);
+
+                namespace Forum{
+                    class Message
+                    {}
+                }
+
+                namespace Messenger
+                {
+                    class Message
+                    {}
+                }
+
+                namespace{
+                    $foremMessage = new\Message;
+                    $messengerMessenger = new\Message;
+
+                    var_dump($forumMessage::class);
+                    var_dump($messengerMessage::class);
+                }
+            ```
+2. #### Importation de classe d'un espace de noms different
+    - Pour importer une classe d'une espace de noms different, on utilise le mot clé **use** suivi du **FQCN** ***(Fully Qualified Class Name (nom de classe entièrement qualifié))***
+        ```
+        namespace Messenger{
+            class Message
+            {}
+        }
+
+        namespace{
+            use Messenger\Message;
+
+            $messengerMessage = new Message;
+            var_dump($messengerMessage::class);
+        }
+        ```
+**NB: En ratique, il est preferable d'utiliser la synthaxe sans accolade. on definis l'espace de nom dans lequel on se trouve au début du fichier, puis on precise les classes provenant des autres espaces de nom avec le mot-clé use en dessous** 
+
+3. #### Structuration des fichiers 
