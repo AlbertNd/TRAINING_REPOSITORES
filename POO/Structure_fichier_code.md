@@ -1,4 +1,4 @@
-# Structuration des filchiers, des classes, et du code. 
+# Structuration des fichiers, des classes, et du code. 
 
 1. #### Les espaces de nom (namespace). 
     - Les espaces de nom permettent de regrouper des classes sous un meme nom. 
@@ -103,4 +103,5 @@
         ```
 **NB: En ratique, il est preferable d'utiliser la synthaxe sans accolade. on definis l'espace de nom dans lequel on se trouve au début du fichier, puis on precise les classes provenant des autres espaces de nom avec le mot-clé use en dessous** 
 
-3. #### Structuration des fichiers 
+3. #### Structuration des fichiers. 
+    - **Un fichier pour une classe**: à chaque appel de classe on charge le fichier associé. Cela diminue la taille des fichiers, et PHP charge et analyse que le srict necessaire au moment de la requete.
