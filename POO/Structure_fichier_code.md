@@ -122,8 +122,46 @@
         - Dans la bibliothéque standard PHP se trouve une fonction nommée **spl_autoload_register**
             - Lorsuq'on demande a PHP de charger une classe, il vérifie qu'elle existe.
                 - Par defaut, la fonction 
-                    1. Remplace les \\\ en / 
-                    2. Remplace les nominations par le terme souhaité.
-                    3. Ajoute l'extension ***.php*** au nom de la classe attendu 
-                    4. Definir une call-back. (une fonction que l'on va passer en argument).
-        - Imaginons que l'on est un repertoire ***SRC*** et que l'on choisi d'ajouter le prefixe ***APP*** dans tous les espace de noms. 
+                    1. **$fqcn** ***(full qualified class name)*** : contient Domaine\Forum\Message
+                    2. On remplace les **\ par des /** et on ajout **.php** à la fin
+                    3. On obtient Domaine/Forum/Message.php 
+                    4. Puis on charge le fichier
+                    -   ```
+                            spl_autoload_register(static function(string $fqcn){
+                                $path = str_replace('\\','/',$fqcn).'.php;
+                                require_once($path);
+                            });
+
+                            use Domaine/Forum/Message;
+
+                            $forumMessage = new Message;
+
+                        ``` 
+
+        - ***Imaginons que l'on est un repertoire*** **SRC** ***dans le quel on met tous les fichiers et que l'on choisi d'ajouter le prefixe*** **APP** ***dans tous les espace de noms.*** 
+            - **SRC**
+                - Domaine
+                    - Forum
+                        - Message.php
+                            - namspace **App\Domaine\Forum**
+                                - class Message
+                                    {}
+                    - User
+                        - User.php
+                            - namespace **App\Domaine\User**
+                                - class User
+                                    {}
+            - **index**
+                - ```
+                    spl_autoload_register(static function (string $fqcn){
+
+                        // On remplace le mot App par src 
+
+                        $path = str_replace(['App','\\'],['SRC','/'],$fqcn).'.php;
+                        require_once($path);
+                    })
+
+                    use App\Domaine\Forum\Message;
+                    use App\Domaine\User\User
+
+                  ```
