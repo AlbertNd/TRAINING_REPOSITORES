@@ -103,5 +103,27 @@
         ```
 **NB: En ratique, il est preferable d'utiliser la synthaxe sans accolade. on definis l'espace de nom dans lequel on se trouve au début du fichier, puis on precise les classes provenant des autres espaces de nom avec le mot-clé use en dessous** 
 
+**NB: Lorsu'on travaille avec les espaces de nom, PHP cherche toujours les méthodes dans l'espacede nom dans lequel il se trouve et si ce n'est pas le cas, alors il regarde dans l'espace globale. Lorsque l'on sait que la méthode se trouve dans l'espace global on l'indique à PHP en prefixant la fonction d'un backslash "\" et cela lui evite de faire la vérification**
+```
+    namespace Test
+    {
+        if(! \ is_int('n'est pas un entier')){
+            echo 'Ceci n'est pas un entier';
+        }
+    }
+```
+
 3. #### Structuration des fichiers. 
     - **Un fichier pour une classe**: à chaque appel de classe on charge le fichier associé. Cela diminue la taille des fichiers, et PHP charge et analyse que le srict necessaire au moment de la requete.
+    - **La recupération des fichiers** se fait l'aide de l'instruction :
+        - **require_once('.../.../..php');**
+            - ***Il est impératif d'utiliser*** **require_once** ***pour chaque fichier de chaque classe utilisée, meme si la classe se trouve dans une condition***
+    - **Le chargement automatisée**:
+        - Dans la bibliothéque standard PHP se trouve une fonction nommée **spl_autoload_register**
+            - Lorsuq'on demande a PHP de charger une classe, il vérifie qu'elle existe.
+                - Par defaut, la fonction 
+                    1. Remplace les \\\ en / 
+                    2. Remplace les nominations par le terme souhaité.
+                    3. Ajoute l'extension ***.php*** au nom de la classe attendu 
+                    4. Definir une call-back. (une fonction que l'on va passer en argument).
+        - Imaginons que l'on est un repertoire ***SRC*** et que l'on choisi d'ajouter le prefixe ***APP*** dans tous les espace de noms. 
