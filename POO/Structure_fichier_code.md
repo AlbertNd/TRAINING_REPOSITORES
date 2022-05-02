@@ -146,11 +146,43 @@
                             - namspace **App\Domaine\Forum**
                                 - class Message
                                     {}
+                                -   ```
+                                        <?php
+                                            declare(strict_types=1);
+
+                                            namespace App\Domaine\Forum;
+
+                                            use App\Domaine\User\User;
+
+                                            class Message
+                                            {
+                                                private  $auteur;
+                                                private  $contenu; 
+
+                                                public function __construct(User $auteur, string $contenu)
+                                                {
+                                                    $this->auteur=$auteur;
+                                                    $this->contenu=$contenu;
+                                                }
+                                            }
+                                    ```
                     - User
                         - User.php
                             - namespace **App\Domaine\User**
                                 - class User
                                     {}
+                                -   ```
+                                        <?php
+
+                                            declare(strict_types=1);
+
+                                            namespace App\Domaine\User;
+
+                                            class User
+                                            {
+                                                public $name;
+                                            }
+                                    ```
             - **index**
                 - ```
                     spl_autoload_register(static function (string $fqcn){
@@ -163,5 +195,12 @@
 
                     use App\Domaine\Forum\Message;
                     use App\Domaine\User\User
+
+                    $user = new User;
+                    $user->name='Albert';
+
+                    $Message = new Message($user,'voila le message');
+
+                    var_dump($Message);
 
                   ```

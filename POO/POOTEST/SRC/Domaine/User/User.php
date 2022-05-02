@@ -6,5 +6,5 @@ namespace App\Domaine\User;
 
 class User
 {
-    private string $name;
-};
+    public $name;
+}
