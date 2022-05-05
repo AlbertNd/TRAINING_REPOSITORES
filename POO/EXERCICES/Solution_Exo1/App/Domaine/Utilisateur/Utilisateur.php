@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domaine\Utilisateur;
 
-class Utilisateur
+abstract class Utilisateur
 {
     private string $nom;
     private string $prenom; 

@@ -9,9 +9,10 @@ spl_autoload_register(static function(string $fqcn){
 
 use App\Domaine\Utilisateur\Locataire;
 use App\Domaine\Utilisateur\Proprietaire;
-use App\Domaine\Utilisateur\Utilisateur;
+use App\Domaine\Vehicule\Vehicule;
 
 $pro = new Proprietaire('Ndizeye','Albert','45678','09876');
 $loc = new Locataire('tillieux','Amandine','09876','09879');
+$veh = new Vehicule($loc,'IVECO');
 
-var_dump($pro,$loc);
+var_dump($veh);
