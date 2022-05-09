@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\domaine\Utilisateur;
 
-require_once('Utilisateur.php');
-
 use App\Domaine\Utilisateur\Utilisateur;
 
-class Propriétaire extends Utilisateur
+class Proprietaire extends Utilisateur
 {
     public const STATUS = 'PROPRIETAIRE'; 
     
@@ -25,8 +23,4 @@ class Propriétaire extends Utilisateur
     
 }
 
-$test = new Propriétaire('Ndizeye','Albert',123654);
-$test->setStatus('BLABLABAL');
-
-var_dump($test);
 

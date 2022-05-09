@@ -8,7 +8,7 @@ namespace App\Domaine\Utilisateur;
 {
     private string $nom;
     private string $prenom;
-    private int $telephne; 
+    private int $telephone; 
     private string $status;
     private string $matricule; 
 
@@ -44,7 +44,7 @@ namespace App\Domaine\Utilisateur;
         $this->prenom=$prenom;
     }
     public function getTelephone(){
-        return $this->telephne;
+        return $this->telephone;
     }
 
     public function setTelephone(int $telephone):void{
