@@ -3,11 +3,11 @@
 #### Création d'un parc automobile qui se composer de : 
 1. Une classe abstrait**Utilisateur**
     1. **Attributs** de la classe:
-        - Nom (privé)
-        - Prenom (privé)
-        - Telephone (privé)
-        - Status (privé)
-        - Matricule (privé)
+        - Nom (chaine de caracter, privé)
+        - Prenom (chaine de caracter, privé)
+        - Telephone (entier, privé)
+        - Status (chaine de caracter, privé)
+        - Matricule (chaine de caracter, privé)
             - Le matricule doit etre composer de deux premiere lettre du nom, de deux premier lettre du renom, de la date de création et de PR si propriétaire et LO si locateaire tout en majuscule(ex : ALND090522PR)
                 `strtoupper(substr($nom,0,2).substr($prenom,0,2).date("y").substr($status,0,2));`
     2. Une **fonction static** pour compter le nombre d'objet utilisateur instancié. 
@@ -19,7 +19,6 @@
         1. Proprietaire
             1. Attributs:
                 - Constante STATUS = 'Proprietaire';
-                - Status (public)
             2. Une **fonction static** pour compter le nombre d'objet proprietaire instancié.
             3. Un constructeur 
                 - Incremetation du nombre d'object propriétaire
@@ -28,7 +27,6 @@
         2. Locataire
             1. Attributs:
                 - Constante STATUS = 'Locataire';
-                - Status (public)
             2. Une **fonction static** pour compter le nombre d'objet locataire instancié.
             3. Un constructeur 
                 - Incremetation du nombre d'object locataire

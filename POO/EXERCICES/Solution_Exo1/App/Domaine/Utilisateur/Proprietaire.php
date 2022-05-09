@@ -2,26 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Domaine\Utilisateur;
+namespace App\domaine\Utilisateur;
 
-use App\Domaine\Utilisateur\Utilisateur; 
+require_once('Utilisateur.php');
 
-class Proprietaire extends Utilisateur
+use App\Domaine\Utilisateur\Utilisateur;
+
+class Propriétaire extends Utilisateur
 {
-    public const STATUS ='Proprietaire';
-    public string $status;
+    public const STATUS = 'PROPRIETAIRE'; 
+    
+    public static $nombrePropriataire = 0; 
 
-    public static $nombreProprietaire = 0;
-
-    Public function __construct(string $nom, string $prenom, string $telephone, $matricule , string $status=self::STATUS)
+    public function __construct(string $nom, string $prenom, int $telephone,string $status=self::STATUS)
     {
-        $this->status=$status;
+        
+        self::$nombrePropriataire++;
 
-        parent::__construct($nom,$prenom,$telephone,$status,$matricule);
-
+        parent::__construct($nom,$prenom,$telephone,$status);
         parent::$nombreUtilisateur++;
-        self::$nombreProprietaire++;
-
     }
+    
 }
+
+$test = new Propriétaire('Ndizeye','Albert',123654);
+$test->setStatus('BLABLABAL');
+
+var_dump($test);
 
