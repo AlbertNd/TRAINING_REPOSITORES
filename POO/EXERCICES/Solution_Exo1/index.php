@@ -3,16 +3,19 @@
 declare(strict_types=1);
 
 spl_autoload_register(static function(string $fqcn){
-    $path = str_replace('\\','/',$fqcn).'.php';
+    $path=str_replace('\\','/',$fqcn).'.php';
     require_once $path;
 });
 
 use App\Domaine\Utilisateur\Locataire;
 use App\Domaine\Utilisateur\Proprietaire;
+use App\Domaine\Utilisateur\Utilisateur;
 use App\Domaine\Vehicule\Vehicule;
+use App\Domaine\Vehicule\Camion;
 
-$pro = new Proprietaire('Ndizeye','Albert','45678','09876');
-$loc = new Locataire('tillieux','Amandine','09876','09879');
-$veh = new Vehicule($loc,'IVECO');
 
-var_dump($veh);
+$testL=new Proprietaire('Ndizeye','Albert','3646464','0958585');
+$testL->setMatricule('Tillieux','Amandine','Locataire');
+$test = new Camion($testL,812,'Rouge','34567');
+
+var_dump($test);

@@ -4,16 +4,31 @@ declare(strict_types=1);
 
 namespace App\Domaine\Vehicule;
 
-use App\Domaine\Utilisateur\Utilisateur;
 
-class Vehicule
+
+abstract class Vehicule 
 {
-    public string $marque; 
-    public $conducteur;
+    
+    private const STATUS_Loc = 'A louer';
+    private const STATUS_Priv ='Véhicule privée';
 
-    public function __construct( Utilisateur $conducteur, string $marque )
+    private  $utilisateur;
+  
+    private int $prix; 
+    private string $couleur;
+    private string $matricule; 
+    private string $status;
+
+    public static $nombreVehicule=0;
+
+    public function __construct($utilisateur, int $prix, string $couleur, string $matricule, string $status=self::STATUS_Loc)
     {
-        $this->conducteur=$conducteur;
-        $this->marque=$marque;
+        $this->utilisateur=$utilisateur;
+       
+        $this->prix=$prix;
+        $this->couleur=$couleur;
+        $this->matricule=$matricule;
+        $this->status=$status;
     }
 }
+
