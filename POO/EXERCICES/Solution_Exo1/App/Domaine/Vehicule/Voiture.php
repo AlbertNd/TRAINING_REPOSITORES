@@ -1,21 +1,23 @@
-<?php 
+<?php
+
 declare(strict_types=1);
 
 namespace App\Domaine\Vehicule;
 
 
-class Camion extends Vehicule
+class Voiture extends Vehicule
 
 {
-    public const STATUS = 'CAMION'; 
+    public const STATUS = 'Voiture'; 
 
 
-    public static $nombreCamion = 0; 
+    public static $nombreVoiture = 0; 
 
     public function __construct($utilisateur, string $marque,int $annee, string $couleur, int $nombreRoue)
     {
-        $this->status=self::STATUS; 
-        self::$nombreCamion++;
+        $this->status=self::STATUS;
+        
+        self::$nombreVoiture++;
 
         parent::__construct($utilisateur,$marque,$annee,$couleur,$nombreRoue);
         parent::$nombreVehicule++;

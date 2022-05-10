@@ -13,8 +13,13 @@ use App\Domaine\Utilisateur\Locataire;
 use App\Domaine\Utilisateur\Proprietaire;
 use App\Domaine\Utilisateur\Utilisateur;
 use App\Domaine\Vehicule\Vehicule;
+use App\Domaine\Vehicule\Camion;
+use App\Domaine\Vehicule\Voiture;
 
-$testP = new Proprietaire('Ndizeye','Albert',123652);
-$testV = new Vehicule($testP,'IVECO',2022,'rouge',4,'Location','4568');
+$testU= new Locataire('Ndizeye','Albert',12356468); 
 
-var_dump($testV);
+$testC= new Voiture($testU,'IVECO',2023,'Rouge',6);
+
+var_dump($testC);
+
+echo 'Nombre véhicule : '.Vehicule::$nombreVehicule.' nombre camion : '.Camion::$nombreCamion.' nombre voiture : '.Voiture::$nombreVoiture;
