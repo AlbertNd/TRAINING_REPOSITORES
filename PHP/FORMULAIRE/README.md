@@ -67,7 +67,8 @@
                         </div>
                     </div>
                 ```
-#### La fonction isset():
+
+#### La fonction isset() et empty():
 - Elle permet de tester si une varibale existe et peut alors etre utiliser pour affcher une message d'erreur en cas d'absence de la variable. 
     -   ```
             <?php
@@ -89,6 +90,29 @@
                 }
         ```
     - [VOIR AUSSI](https://www.php.net/manual/fr/filter.examples.validation.php)
+###### empty()
+    ```
+        <?php if (empty($_POST['name']) || empty($_POST['message'])) : ?>
+            <div>
+                <h2>Il faut un non et un message pour soumetre le formulaire</h2>
+                <button>
+                <a href="./">retour</a>
+                </button>
+                
+            </div>
+        <?php else : ?>
+            <h1>Message bien recus</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rappel des vos information</h5>
+                    <p class="card-text"><?php echo $_POST['name'] ?></p>
+                    <p class="card-text"><?php echo $_POST['message'] ?></p>
+
+                </div>
+            </div>
+        <?php endif; ?>
+    ```
+
 
 #### Sécurisation du code en bloquant l'exécution de code javascript
 -  Pour ignorer le code HTML, il suffit d'utiliser la fonction **htmlspecialchars**
