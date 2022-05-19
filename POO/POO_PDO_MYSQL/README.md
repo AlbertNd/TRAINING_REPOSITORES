@@ -126,13 +126,58 @@
             ```
     - Le fichier qui recoit 
         - Au momment ou lapage PHP s'execute, le fichier a ete envoyé sur le serveur mais est stocker dans un dossier temporaire. et qu'il faut decider si on l'accepte ou non.
-            1. On teste si le fichier à bien ete envoyer:
+            1. ***On teste si le fichier à bien ete envoyer:***
                 -   ```
                         <?php
                             // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
-                            if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0)
+                            if (isset($_FILES['fichier']) && $_FILES['fichier']['error'] == 0)
                             {
                             
                             }
                         ?>
                     ```
+            2. ***Vérification de la taille du fichier***
+                -   ```
+                        <?php
+                            // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+                            if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0)
+                            {
+                                    // Testons si le fichier n'est pas trop gros
+                                    if ($_FILES['screenshot']['size'] <= 1000000)
+                                    {
+                            
+                                    }
+                            }
+                        ?>
+
+                    ```
+            3. ***Vérification de l'extension du fichier***
+                -   ```
+                        <?php
+                            $fileInfo = pathinfo($_FILES['screenshot']['name']);
+                            $extension = $fileInfo['extension'];
+                        ?>
+                    ```
+                    - Une fois l'extension récupérée, on peut la comparer à un tableau d'extensions autorisées, et vérifier si l'extension récupérée fait bien partie des extensions autorisées à l'aide de la fonction **in_array()**
+
+                        -   ```
+                                <?php
+                                    // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+                                    if (isset($_FILES['screenshot']) AND $_FILES['screenshot']['error'] == 0)
+                                    {
+                                            // Testons si le fichier n'est pas trop gros
+                                            if ($_FILES['screenshot']['size'] <= 1000000)
+                                            {
+                                                    // Testons si l'extension est autorisée
+                                                    $fileInfo = pathinfo($_FILES['screenshot']['name']);
+                                                    $extension = $fileInfo['extension'];
+                                                    $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+                                                    if (in_array($extension, $allowedExtensions))
+                                                    {
+                                                    
+                                                    }
+                                            }
+                                    }
+                                ?>
+                            ```
+            4. ***Validaton de l'upload du fichier***
