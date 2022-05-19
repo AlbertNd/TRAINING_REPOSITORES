@@ -69,7 +69,8 @@
                 ```
 
 #### La fonction isset() et empty():
-- Elle permet de tester si une varibale existe et peut alors etre utiliser pour affcher une message d'erreur en cas d'absence de la variable. 
+- **isset()**:La fonction isset() est une fonction intégrée à PHP qui est utilisée pour déterminer si la variable est déclarée et si sa valeur n’est pas égale à NULL.
+- Elle permet de tester si une varibale existe et peut alors etre utiliser pour afficher un message d'erreur en cas d'absence de la variable. 
     -   ```
             <?php
                 if(!isset($_GET['name]) || !isset($_GET['message'])){
@@ -91,6 +92,7 @@
         ```
     - [VOIR AUSSI](https://www.php.net/manual/fr/filter.examples.validation.php)
 ###### empty()
+- **empty()**: est une fonction intégrée à PHP qui est utilisée pour vérifier si une variable est vide ou non.
     ```
         <?php if (empty($_POST['name']) || empty($_POST['message'])) : ?>
             <div>
