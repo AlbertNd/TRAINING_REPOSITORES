@@ -140,10 +140,10 @@
                 -   ```
                         <?php
                             // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
-                            if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0)
+                            if (isset($_FILES['fichier']) && $_FILES['fichier']['error'] == 0)
                             {
                                     // Testons si le fichier n'est pas trop gros
-                                    if ($_FILES['screenshot']['size'] <= 1000000)
+                                    if ($_FILES['fichier']['size'] <= 1000000)
                                     {
                             
                                     }
@@ -154,7 +154,7 @@
             3. ***Vérification de l'extension du fichier***
                 -   ```
                         <?php
-                            $fileInfo = pathinfo($_FILES['screenshot']['name']);
+                            $fileInfo = pathinfo($_FILES['fichier']['name']);
                             $extension = $fileInfo['extension'];
                         ?>
                     ```
@@ -163,13 +163,13 @@
                         -   ```
                                 <?php
                                     // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
-                                    if (isset($_FILES['screenshot']) AND $_FILES['screenshot']['error'] == 0)
+                                    if (isset($_FILES['fichier']) AND $_FILES['fichier']['error'] == 0)
                                     {
                                             // Testons si le fichier n'est pas trop gros
-                                            if ($_FILES['screenshot']['size'] <= 1000000)
+                                            if ($_FILES['fichier']['size'] <= 1000000)
                                             {
                                                     // Testons si l'extension est autorisée
-                                                    $fileInfo = pathinfo($_FILES['screenshot']['name']);
+                                                    $fileInfo = pathinfo($_FILES['fichier']['name']);
                                                     $extension = $fileInfo['extension'];
                                                     $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
                                                     if (in_array($extension, $allowedExtensions))
@@ -181,3 +181,26 @@
                                 ?>
                             ```
             4. ***Validaton de l'upload du fichier***
+                - On accepte le fichier en appellant **move_uploaded_file()**
+                -   ```
+                        <?php
+                        // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
+                        if (isset($_FILES['fichier']) && $_FILES['fichier']['error'] == 0)
+                        {
+                                // Testons si le fichier n'est pas trop gros
+                                if ($_FILES['fichier']['size'] <= 1000000)
+                                {
+                                        // Testons si l'extension est autorisée
+                                        $fileInfo = pathinfo($_FILES['fichier']['name']);
+                                        $extension = $fileInfo['extension'];
+                                        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+                                        if (in_array($extension, $allowedExtensions))
+                                        {
+                                                // On peut valider le fichier et le stocker définitivement
+                                                move_uploaded_file($_FILES['fichier']['tmp_name'], 'uploads/' . basename($_FILES['fichier']['name']));
+                                                echo "L'envoi a bien été effectué !";
+                                        }
+                                }
+                        }
+                        ?>
+                    ```
