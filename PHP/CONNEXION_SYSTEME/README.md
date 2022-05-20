@@ -50,6 +50,31 @@
             - Une condition de succès de connexion `<?php else;?>`
                 - Aficche du message de succès
             - Fin de la condition `<?php endif;?>` 
+        -   ```
+                <?php if (!isset($loggedUser)) : ?>
+                    <form action="home.php" method="POST">
+
+
+                        <?php if (isset($errorMessage)) : ?>
+                            <H1>
+                                <?php echo $errorMessage; ?>
+                            </H1>
+                        <?php endif; ?>
+
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="">
+                        <label for="password">passxord</label>
+                        <input type="password" name="password" id="">
+                        <button type="submit">Envoyer</button>
+
+                    </form>
+
+                <?php else : ?>
+                    <h1>
+                        <?php echo $loggedUser['email']; ?> bienvenu
+                    </h1>
+                <?php endif; ?>
+            ```
 
 
     2. **home.php** : qui doit maintenant inclure une formulaire de connexion et une condition sur l'affichage des recettes.
