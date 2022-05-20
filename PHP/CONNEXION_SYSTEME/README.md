@@ -40,16 +40,16 @@
                 ?>
             ```
         2. Affichage du formulaire de connexion pour un utilisateur qui n'est pas connecté. 
-            - Une condition si la variable ***Utilisateur connecté*** n'est pas déclarer  **<?php if(!isset($loggedUser)):?>** 
+            - Une condition si la variable ***Utilisateur connecté*** n'est pas déclarer  **<?php if(!isset($loggedUser)):?>** ...
                 - Balise debut formulaire et ses attributs
-                    - Condition en cas de message d'erreur **<?php if(isset($errorMessage))>**
-                        - Affiche du message d'erreur **<?php echo $errorMessage; ?>**
-                    - Fin de la condition message d'erreur **<?php endif; ?>**
+                    - Condition en cas de message d'erreur **<?php if(isset($errorMessage))>**....
+                        - Affiche du message d'erreur **<?php echo $errorMessage; ?>**....
+                    - Fin de la condition message d'erreur **<?php endif; ?>**...
                     - Les balises des champs d'insertion du formulaire
                 - Balise de fin du formulaire
-            - Une condition de succès de connexion **<?php else;?>**
+            - Une condition de succès de connexion **<?php else;?>**...
                 - Aficche du message de succès
-            - Fin de la condition **<?php endif;?>** 
+            - Fin de la condition **<?php endif;?>** ....
 
 
     2. **home.php** : qui doit maintenant inclure une formulaire de connexion et une condition sur l'affichage des recettes.
