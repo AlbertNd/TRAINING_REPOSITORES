@@ -1,5 +1,7 @@
 # La conservation des données garce au sessions et aux cookies 
 
+## Les sessions 
+
 - Les sessions permettent de conserver des variables sur toutes les pages du site.
     - En effet, le supervariable $_POST et $_GET ne conserve pas l'information en tre deux reque PHP alors que l'on souhaiterai que si l'on change de page que la connexion reste. pour ce faire, il faut utiliser les session
     - Elle permet d'avoir une supervariable **$_SESSION** qui va persister entre deux sessions
@@ -25,10 +27,13 @@
 1. Dans le fichier `Home.php`
     - Utilisation de la fonction **session_start()** et qui donne la surpervariable **$_SSESSIOn**
     -   ```
-            <?php session_start(); // activation de la session et donnant la surpervariable $_SESSION?>
+            <?php session_start(); // activation de la session et donnant la surpervariable $_SESSION
+            ?>
+
 
             <!DOCTYPE html>
             <html lang="en">
+
             <head>
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,19 +41,27 @@
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
                 <title>test</title>
             </head>
+
             <body class="d-flex flex-column min-vh-100">
                 <div class="container">
-                    <?php include_once('login.php');?>
-                    
-                    <?php if(isset($_SESSION['LOGGED_USER'])):?>
-                        <h1>Le site en question</h1>
-                        voila le deux
+                    <?php include_once('login.php'); ?>
 
-                        <a href="destroyed.php"> deconnexion</a>
+                    <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
+                        <div>
+                            <h1>Le site en question</h1>
+                            voila le deux
+                        </div>
 
-                        <?php endif;?>
+
+                        <a href="logout.php">
+                            <button>deconnexion </button>
+                        </a>
+
+
+                    <?php endif; ?>
                 </div>
             </body>
+
             </html>
         ```
 
@@ -98,3 +111,47 @@
                 </div>
             <?php endif; ?>
         ```
+        - Si l'on souhaite fermer manuelement la session, on cree un lien ***Déconnection** amenant vers une page `logout.php` qui fait appel à la fonction **session_destroy()**
+3. Dans le fichier `logout.php`
+    -   ```
+            <?php   
+            session_start(); // Pour etre sur que l'on utilise la meme session
+            session_destroy(); //Destuction de la session 
+            header("location:/Demo/Home.php"); // redirection vers la page home.php apres la destruction 
+            exit();
+            ?>
+        ```
+    -  Autre solution 
+        -   ```
+                if(isset($_POST['logoutButtonName'])) {
+                    session_destroy();
+                    unset($_SESSION['nameOfSessionToBeDestroyed']);
+                    header('location:login.php');
+                }
+            ```
+**NB:les sessions peuvent servir dans de nombreux cas sur votre site (et pas seulement pour retenir un nom et un prénom !).**
+
+Quelques exemples :
+
+***Imaginons un script qui demande un identifiant et un mot de passe pour qu'un visiteur puisse se « connecter » (s'authentifier). On peut enregistrer ces informations dans des variables de session et se souvenir de l'identifiant du visiteur sur toutes les pages du site !***
+
+***Puisqu'on retient son identifiant et que la variable de session n'est créée que s'il a réussi à s'authentifier, on peut l'utiliser pour restreindre certaines pages de notre site à certains visiteurs uniquement. Cela permet de créer toute une zone d'administration sécurisée : si la variable de session login existe, on affiche le contenu, sinon on affiche une erreur.***
+
+***On se sert activement des sessions sur les sites de vente en ligne. Cela permet de gérer un « panier » : on retient les produits que commande le client quelle que soit la page où il est. Lorsqu'il valide sa commande, on récupère ces informations et… on le fait payer.***
+
+
+## Les cookies 
+- Un cookie est une petit fichier que l'on enregistre sur l'ordinateur du visiteur. Il contient du texte et permet de retenir des information sur le visiteur. **ce ne sont pas des virus** 
+    - Par exemple: on inscris dans un cookie le pseudo du visiteur. Comme ça, la prochaine fois qu'il viendra sur le site, on pourra lire son pseudo en allant regarder ce que son cookie contient
+- Chaque cookie stocke généralement une information à la fois. Si on veut stocker le pseudonyme du visiteur et sa date de naissance, il est donc recommandé de créer deux cookies.
+
+#### Ecrire un cookie 
+- Tout comme une variable, un cookie a un **nom** et une **valeur**
+- Pour ecrire un cookie, on utlise la fonction PHP **setcookie**
+- Il prend trois paramettres:
+    1. Le nom du cookie (LOGGED_USER) 
+    2. La valeur du cookie (mail utilisateur)
+    3. La date d'expiration du cookie, sous form ***timestamp***
+        - **timestamp** : c'est le nombre de secondes écoulées depuis le ***1er janvier 1970***. Le timestamp est une valeur qui ***augmente de 1 toutes les secondes***. Pour obtenir le timestamp actuel, on fait appel à la fonction **time()** . Pour définir une date d'expiration du cookie, il faut ajouter au « moment actuel » le nombre de secondes au bout duquel il doit expirer.
+            - si on veut supprimer le cookie dans un an, il faudra donc écrire : `time() + 365*24*3600` 
+#### Sécuriser un cookie avec les propriétés
