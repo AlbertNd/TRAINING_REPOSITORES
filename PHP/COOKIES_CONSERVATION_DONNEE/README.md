@@ -154,4 +154,7 @@ Quelques exemples :
     3. La date d'expiration du cookie, sous form ***timestamp***
         - **timestamp** : c'est le nombre de secondes écoulées depuis le ***1er janvier 1970***. Le timestamp est une valeur qui ***augmente de 1 toutes les secondes***. Pour obtenir le timestamp actuel, on fait appel à la fonction **time()** . Pour définir une date d'expiration du cookie, il faut ajouter au « moment actuel » le nombre de secondes au bout duquel il doit expirer.
             - si on veut supprimer le cookie dans un an, il faudra donc écrire : `time() + 365*24*3600` 
-#### Sécuriser un cookie avec les propriétés
+#### Sécuriser un cookie avec les propriétés httpOnly et secure
+- La securisation des cookies avec les proprietes **httpOnly** et **secure** les rendent inaccessible en JavaScrippt sur tous les navigateurs qui suportent cette option. elle permettent de reduire drastiquement les risques de faille **XSS** sur le site au cas ou on aurait oublier d'utiliser **htmlspecialchars**.
+
+
