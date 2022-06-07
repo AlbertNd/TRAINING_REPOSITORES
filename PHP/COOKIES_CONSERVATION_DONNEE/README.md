@@ -155,6 +155,46 @@ Quelques exemples :
         - **timestamp** : c'est le nombre de secondes écoulées depuis le ***1er janvier 1970***. Le timestamp est une valeur qui ***augmente de 1 toutes les secondes***. Pour obtenir le timestamp actuel, on fait appel à la fonction **time()** . Pour définir une date d'expiration du cookie, il faut ajouter au « moment actuel » le nombre de secondes au bout duquel il doit expirer.
             - si on veut supprimer le cookie dans un an, il faudra donc écrire : `time() + 365*24*3600` 
 #### Sécuriser un cookie avec les propriétés httpOnly et secure
-- La securisation des cookies avec les proprietes **httpOnly** et **secure** les rendent inaccessible en JavaScrippt sur tous les navigateurs qui suportent cette option. elle permettent de reduire drastiquement les risques de faille **XSS** sur le site au cas ou on aurait oublier d'utiliser **htmlspecialchars**.
+- La securisation des cookies avec les proprietes **httpOnly** et **secure** les rendent inaccessible en `JavaScript` sur tous les navigateurs qui suportent cette option. Elles permettent de reduire drastiquement les risques de faille **XSS** sur le site au cas ou on aurait oublier d'utiliser **htmlspecialchars**.
 
+#### Création de cookie 
+- Retenir le mail de la personne connecté durant une année. 
+    -   ```
+            <?php
+            setcookie(
+                'LOGGED_USER', 
+                'utilisateur@exemple.com',
+                [
+                    'expires' => time()+ 365*24*3600,
+                    'secure' => true, 
+                    'httponly' => true,
+                ]
+            );
+        ```
+        - ***Ainsi, on diminue le risque que le visteur puisse se faire voler ses données de cookie à cause d'une faille XSS***
+    - ##### Ne jamais place le moindre code HTML avant d'utiliser `setcookie`
+#### Affichage et recuperation d'un cookie
 
+- Les inforamtions contenant dans un cookie se trouvent dans une supergobale **$_COOKIE** sous forme  d'un tableau(array). 
+    - Lorsque l'on veut resortir l'information stocker dans le cookie:
+        - **$_COOKIE['LOGGED_USER']**
+            - `<?php echo $_COOKIE['LOGGED_USER']; ?>`
+    - **NB:** Si le cookie n'existe pas, la variable superglobale n'existe pas. il faut donc faire un **isset** pour vérifier si le cookie existe ou pas. 
+
+#### Modification d'un cookie existant 
+
+- On refait appel à `setcookie` en gardant le meme nom de cookie, ce qui ecrasera l'ancien. 
+    - Exemple : si c'est laurene castor qui se connecte au site : 
+        -   ```
+                <?php
+                    setcookie(
+                        'LOGGED_USER',
+                        'laurene.castor@exemple.com',
+                        [
+                            'expires' => time() + 365*24*3600,
+                            'secure' => true,
+                            'httponly' => true,
+                        ]
+                    );
+            ```
+        - ***Ainsi le temps du cookie est remis à zero pour une periode de 1 an**
