@@ -1,5 +1,7 @@
 <?php
 
 try {
-	$db = new PDO()
+	$db = new PDO();
+}catch (Exception $e){
+
 }
