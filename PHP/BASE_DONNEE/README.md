@@ -125,8 +125,8 @@
                     <?php
                      $declarationListe = $db -> prepare(SELECT * FROM utilisateur WHERE nom = :nom AND prenom = :prenom);
                      $declarationListe -> execute([
-                         'nom'=>$_GET['nom],
-                         'prenom'=>$_GET['prenom],
+                         'nom'=>$_POST['nom],
+                         'prenom'=>$_POST['prenom],
                          'Age' => 33,
                          
                          ]);
@@ -136,3 +136,66 @@
 
                     >
                 ```
+#### Ajout, Modification et Suppression des données 
+1. **L'ajout**
+    - Pour ajouter une entrée :
+        -   ```
+                <?php
+                    
+                    $insertion = $bd ->prepare('INSERT INTO utilisateur (Nom, prenom, age) VALUE (:Nom, :prenom, :age )');
+
+                    $insertion -> execute(
+                            [
+                                'Nom' => 'Brave',
+                                'prenom' => 'Bahibigwi',
+                                'age' => 34,
+                            ]
+                        )
+                        // gestion d'erreur 
+                        or die(print_r($db->errorInfo()))
+                        ;
+            ```
+            - Le champs **id** ayant la propriete **AUTO_INCREMENT** dans la base de donnée MYSQL va lui attribuer une valeur automatique.
+            - Si un champs a une valeur **booléenne** il est possible de lui attribuer la valeur ***1*** ou ***0*** respectivement pour ***true*** ou ***false***
+2. **Modification**
+    - Pour modifier une entrée 
+        -   ```
+                <?php
+
+                    try{
+                        $bd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8','user','Albert10?', [PDO::ATTR_ERRMODE=> PDO::ERRMODE_EXCEPTION]);
+                    }catch(Exception $e){
+                        die('Erreur : '.$e->getMessage());
+                    }
+
+                    $modifInsert = $bd -> prepare('UPDATE utilisateur SET Nom = :nom, prenom = :prenom WHERE id = :id');
+                    $modifInsert -> execute(
+                        [
+                            'nom' =>'Bahibigwi',
+                            'prenom' => 'Brave', 
+                            'id' => 4,
+                        ]
+                    )
+                    // gestion d'erreur 
+                        or die(print_r($db->errorInfo()))
+                        ;
+            ```
+3. **Suppression**
+    - Pour supprimer une entrée
+        -   ```
+                <?php
+
+                    try{
+                        $bd =new PDO('mysql:host=localhost;dbname=blog;chars=utf8','user','Albert10?', [PDO::ATTR_ERRMODE=> PDO::ERRMODE_EXCEPTION]);
+                    }catch (Exception $e){
+                        die('Erreur : '.$e->getMessage());
+                    }
+
+                    $suppInsert = $bd -> prepare('DELETE FROM utilisateur WHERE id = :id');
+                    $suppInsert -> execute([
+                        'id' => 2,
+                    ])
+                    // gestion d'erreur 
+                        or die(print_r($db->errorInfo()))
+                        ;
+            ```
