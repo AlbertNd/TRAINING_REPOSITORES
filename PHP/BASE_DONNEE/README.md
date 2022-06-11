@@ -199,3 +199,4 @@
                         or die(print_r($db->errorInfo()))
                         ;
             ```
+## Regles de bonne pratique
