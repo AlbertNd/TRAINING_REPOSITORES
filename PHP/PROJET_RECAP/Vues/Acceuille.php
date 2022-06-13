@@ -1,4 +1,12 @@
 
-<div>
-    <h1>Bonjour on y est </h1>
-</div>
+
+<?php foreach($connectionU as $utilisateur){ ?>
+    
+	<div>
+		<?php echo $utilisateur['Nom'] .' et le prenom '. $utilisateur['Prenom']?>
+	</div>
+
+<?php
+}
+?>
+ 

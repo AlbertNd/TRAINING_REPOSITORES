@@ -3,7 +3,9 @@
         <ul class="flex">
             <li class="p-3">lien 1</li>
             <li class="p-3">lien 2</li>
-            <li class="p-3">lien 3</li>
+            <li class="p-3"> 
+                <a href="Formulaire/Enregistre.php"> Enregistrer </a>
+            </li>
         </ul>
     </div>
     <div>
@@ -15,8 +17,8 @@
             </a>
         <?php else : ?>
             <div class="container flex flex-wrap justify-center">
-                <div class="mr-10">
-                    <?php $_SESSION['LOGGED_USER'] ?>
+                <div class="mr-10 py-2 px-4 ">
+                    <?php echo $_SESSION['LOGGED_USER'] ?>
                 </div>
                 <div>
                    <a href="/Formulaire/Logout.php">

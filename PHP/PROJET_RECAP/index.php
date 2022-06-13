@@ -12,6 +12,9 @@
 </head>
 
 <?php include('Control/Verification.php'); ?>
+<?php require_once('Control/ConnectionBD.php');?>
+
+
 
 <body>
     <div>

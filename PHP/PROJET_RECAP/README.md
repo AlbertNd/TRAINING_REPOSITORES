@@ -127,7 +127,6 @@
 
 ## Barre de navidation 
 ```
-
 <div class="container flex flex-wrap justify-between items-center mx-auto">
     <div>
         <ul class="flex">
@@ -146,7 +145,7 @@
         <?php else : ?>
             <div class="container flex flex-wrap justify-center">
                 <div class="mr-10">
-                    <?php $_SESSION['LOGGED_USER'] ?>
+                    <?php echo $_SESSION['LOGGED_USER'] ?>
                 </div>
                 <div>
                    <a href="/Formulaire/Logout.php">
