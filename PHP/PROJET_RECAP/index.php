@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +11,19 @@
     <title>Page site</title>
 </head>
 
+<?php include('Control/Verification.php'); ?>
+
 <body>
+    <div>
+        <?php include('Vues/navbar.php')?>
+    </div>
+    <div class="contenaire">
+        <?php include('Formulaire/Login.php');?>
 
-
-
+        <?php if($_SESSION['LOGGED_USER']):?>
+                <?php include('Vues/Acceuille.php');?>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>

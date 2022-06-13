@@ -23,7 +23,7 @@
     - Inclusion du fichier de ***[vérification.php](#verification)*** 
     - Body
         - Inclusion des composant de page :
-            1. La barre de ***[navigation]()***:
+            1. La barre de ***[navigation](#barre-de-navidation)***:
                 - Les liens vers les autres pages  
                 - Condition d'affichage si connecté ou pas 
                     - Si connecté
@@ -45,91 +45,84 @@
 
 ## Index
 ```
-    <?php session_start(); // activation de la session et donnant la surpervariable $_SESSION
-    ?>
+<?php session_start(); ?>
 
-
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>test</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Page site</title>
     </head>
-        <?php
-            require_once('Control/Verification.php');
-        ?>
-        <body>
-            <div>
-                <?php include('Vues/navbar.php') ?>
-            </div>
 
-            <div class="flex justify-center">
-            
-                <div class="mt-32">
+    <?php include('Control/Verification.php'); ?>
 
-                    <?php include_once('Formulaire/login.php'); ?>
+    <body>
+        <div>
+            <?php include('Vues/navbar.php')?>
+        </div>
+        <div class="contenaire">
+            <?php include('Formulaire/Login.php');?>
 
-                    <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
-                        <div>
-                            <?php include('Vues/Acceuille.php') ?>
-                        </div>
-                    <?php endif; ?>
-                
-                </div>
-            
-            </div>
-        
-        </body>
+            <?php if($_SESSION['LOGGED_USER']):?>
+                    <?php include('Vues/Acceuille.php');?>
+            <?php endif; ?>
+        </div>
+    </body>
 
-    </html>
+</html>
 ```
 ## Verification
 
 ```
 <?php
-    if (empty($_POST['email']) || empty($_POST['password'])) {
-        $message = sprintf('Veuilez mettre les infos de connexion');
-    } elseif (isset($_POST['email']) || isset($_POST['password'])) {
-        if (
-            $_POST['email'] === 'albert@gmail.com'
-            &&
-            $_POST['password'] === 'albert'
-        ) {
-            // Enregistrement de l'email de l'utilisateur en session 
-            
+
+    if(empty($_POST['email']) || empty($_POST['password'])){
+        $message = sprintf('Veuillez introduire vos informations de connection');
+    }elseif(isset($_POST['email']) || isset($_POST['password'])){
+        if($_POST['email'] === 'Albert@gmail.com' 
+        &&
+        $_POST['password'] === 'Albert'){
             $_SESSION['LOGGED_USER'] = $_POST['email'];
-        } else {
-            $message = sprintf('Les infos introduis ne sont pas bonne');
+        }else{
+            $message = sprintf('Les information saisies ne sont pas correctes');
         }
     }
+
 ?>
 ```
 ## Login
 ```
- <?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
-        <form action="Home.php" method="POST">
-            <?php if (!isset($loggedUser)) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $message ?>
+<?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
+
+    <div class="contenaire flex justify-center">
+        <form action="index.php" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
+                <div class="alert arte-danger" role="alert">
+                    <?php echo $message; ?>
                 </div>
             <?php endif; ?>
+
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" name="email">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2"> email</label>
+                <input type="email" name="email" id="" class="border rounded w-full py-2 px-3 text-gray-700">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Email address</label>
-                <input type="password" class="form-control" name="password">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Mot de pass</label>
+                <input type="password" name="password" id="" class="border rounded w-full py-2 px-3 text-gray-700" >
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+            <div class="mb-3 flex justify-center">
+                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded "> connecter</button>
             </div>
+
         </form>
-    <?php endif; ?>
+
+    </div>
+
+<?php endif; ?>
 ```
 
 ## Barre de navidation 
@@ -138,38 +131,36 @@
 <div class="container flex flex-wrap justify-between items-center mx-auto">
     <div>
         <ul class="flex">
-            <li class="py-2 pr-4 pl-3">Lien 1 21</li>
-            <li class="py-2 pr-4 pl-3">Lien 2</li>
-            <li class="py-2 pr-4 pl-3">Lien 3</li>
+            <li class="p-3">lien 1</li>
+            <li class="p-3">lien 2</li>
+            <li class="p-3">lien 3</li>
         </ul>
     </div>
     <div>
-
-        <?php if (!isset($loggedUser)) : ?>
-
-            <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-                connection
-            </button>
-
+        <?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
+            <a href="#">
+                <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                    Se connecter 
+                </button>
+            </a>
         <?php else : ?>
-
-            <div class=" container flex flex-wrap justify-between mx-auto">
+            <div class="container flex flex-wrap justify-center">
                 <div class="mr-10">
-                    <?php echo $loggedUser['email']; ?>
+                    <?php $_SESSION['LOGGED_USER'] ?>
                 </div>
-
                 <div>
-                    <a href="/Formulaire/logout.php">
-                        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-                            déconnection
-                        </button>
-                    </a>
+                   <a href="/Formulaire/Logout.php">
+                       <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                           Deconnection
+                       </button>
+                   </a> 
                 </div>
 
             </div>
 
         <?php endif; ?>
     </div>
+
 </div>
 
 ```
