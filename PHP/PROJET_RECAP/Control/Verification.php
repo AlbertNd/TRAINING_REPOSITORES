@@ -1,26 +1,12 @@
 <?php
+require_once('Control/ConnectionBD.php');
 
-    try {
-        $bd = new PDO('mysql:host=localhost;dbname=Formation;charset=utf8', 'user', 'Albert10?', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-      
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+$connectionU = new connectBD();
 
-
-
-    $connectionUtilisateur = $bd->prepare('SELECT * FROM Utilisateur WHERE Email = :Email');
-    $connectionUtilisateur->execute([
-        'Email' => $_POST['email']
-    ]);
-    $connectionU = $connectionUtilisateur->fetchAll();
-   
-
-
-foreach ($connectionU as $utilisateur) {
+foreach ($connectionU -> lireBD($_POST['email']) as $utilisateur) {
     $email = $utilisateur['Email'];
-    $pass = $utilisateur['Password'];
-    $prenom = $utilisateur['Prenom'];
+    $pass = $utilisateur['password'];
+    $prenom = $utilisateur['prenom'];
 }
 
 if (empty($_POST['email']) || empty($_POST['password'])) {

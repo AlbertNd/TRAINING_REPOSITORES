@@ -1,9 +1,8 @@
 
-
-<?php foreach($connectionU as $utilisateur){ ?>
+<?php foreach($affichAcc -> lireBD($_POST['email']) as $utilisateur){ ?>
     
 	<div>
-		<?php echo $utilisateur['Nom'] .' et le prenom '. $utilisateur['Prenom']?>
+		<?php echo $utilisateur['nom'] .' et le prenom '. $utilisateur['prenom']?>
 	</div>
 
 <?php
