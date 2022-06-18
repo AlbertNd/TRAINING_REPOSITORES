@@ -25,3 +25,5 @@ function lireDonne()
 $utilisateurList = $bd->prepare('SELECT * FROM Utilisateur');
 $utilisateurList->execute();
 $utilisateur = $utilisateurList->fetchAll();
+
+

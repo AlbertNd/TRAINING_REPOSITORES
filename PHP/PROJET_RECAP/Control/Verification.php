@@ -1,15 +1,21 @@
 <?php
-try {
-    $bd = new PDO('mysql:host=localhost;dbname=Formation;charset=utf8', 'user', 'Albert10?', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
 
-$connectionUtilisateur = $bd->prepare('SELECT * FROM Utilisateur WHERE Email = :Email');
-$connectionUtilisateur->execute([
-    'Email' => $_POST['email']
-]);
-$connectionU = $connectionUtilisateur->fetchAll();
+    try {
+        $bd = new PDO('mysql:host=localhost;dbname=Formation;charset=utf8', 'user', 'Albert10?', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+      
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+
+
+
+    $connectionUtilisateur = $bd->prepare('SELECT * FROM Utilisateur WHERE Email = :Email');
+    $connectionUtilisateur->execute([
+        'Email' => $_POST['email']
+    ]);
+    $connectionU = $connectionUtilisateur->fetchAll();
+   
+
 
 foreach ($connectionU as $utilisateur) {
     $email = $utilisateur['Email'];
