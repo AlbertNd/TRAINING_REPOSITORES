@@ -1,14 +1,17 @@
-<?php 
+<?php
 
-require_once('connectionBD.php'); 
+require_once('connectionBD.php');
 
-$data = new database(); 
-foreach($data -> selectbd() as $data){
-    echo $data['nom'];
+$data = new database();
+foreach ($data->selectbd('Post') as $data) {
+?>
+    <ul>
+        <li>
+            <?php echo $data['contenu']; ?>
+        </li>
+    </ul>
+
+<?php
 };
 
 ?>
-
-
-
-
