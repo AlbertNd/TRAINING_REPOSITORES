@@ -27,7 +27,7 @@ class database
     
     {
         try {
-            $bd = $this->conBD->prepare("SELECT  FROM");
+            $bd = $this->conBD->prepare("SELECT u.nom, p.contenu FROM Utilisateur u INNER JOIN Post p ON u.user_id = p.user_id");
             $bd->execute();
             $result = $bd->fetchAll(PDO::FETCH_ASSOC);
             return $result;

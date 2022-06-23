@@ -12,7 +12,7 @@
 </head>
 
 <?php include('Control/Verification.php'); ?>
-<?php 
+<?php
 require_once('Control/ConnectionBD.php');
 $affichAcc = new connectBD();
 
@@ -22,14 +22,17 @@ $affichAcc = new connectBD();
 
 <body>
     <div>
-        <?php include('Vues/navbar.php')?>
+        <?php include('Vues/navbar.php') ?>
     </div>
-    <div class="contenaire">
-        <?php include('Formulaire/Login.php');?>
-
-        <?php if($_SESSION['LOGGED_USER']):?>
-                <?php include('Vues/Acceuille.php');?>
-        <?php endif; ?>
+    <div class="contenaire  p-10 bg-red-200">
+        <div class="flex">
+            <div class="flex-auto w-64">
+                <?php include('Vues/Acceuille.php'); ?>
+            </div>
+            
+                <?php include('Formulaire/Login.php'); ?>
+            
+        </div>
     </div>
 </body>
 

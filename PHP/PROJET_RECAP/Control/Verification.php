@@ -3,7 +3,7 @@ require_once('Control/ConnectionBD.php');
 
 $connectionU = new connectBD();
 
-foreach ($connectionU -> lireBD($_POST['email']) as $utilisateur) {
+foreach ($connectionU -> tblUtilisateur($_POST['email']) as $utilisateur) {
     $email = $utilisateur['Email'];
     $pass = $utilisateur['password'];
     $prenom = $utilisateur['prenom'];
