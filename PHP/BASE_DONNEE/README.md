@@ -167,19 +167,39 @@
                     }catch(Exception $e){
                         die('Erreur : '.$e->getMessage());
                     }
+                    $postData = $_POST; 
+
+                    if(!isset($postData['id]) || !isset($postData['nom']) || !isset($postData['prenom'])){
+                        echo 'Il manque des informations';
+                        return; 
+                    }
+
+                    $id = $postData['id'];
+                    $nom = $postData['nom'];
+                    $prenom = $postData['prenom'];
 
                     $modifInsert = $bd -> prepare('UPDATE utilisateur SET Nom = :nom, prenom = :prenom WHERE id = :id');
                     $modifInsert -> execute(
                         [
-                            'nom' =>'Bahibigwi',
-                            'prenom' => 'Brave', 
-                            'id' => 4,
+                            'nom' => $nom,
+                            'prenom' => $prenom, 
+                            'id' => $id,
                         ]
                     )
                     // gestion d'erreur 
                         or die(print_r($db->errorInfo()))
                         ;
             ```
+        - Pour le formulaire de modification, il faut absolument definir l'`ID` de l'utilisateur concernée. 
+            - L'identifiant doit etre passer dans l'url anfin de pouvoir recuperer les données concerné                      
+                - Recuperation des elements pour pouvoir les remetre dans le formulaire d'edition. 
+                    ```
+                        $presenceUtili = $bd -> prepare('SELECT * FROM Utilisateur WHERE Id = : id ); 
+                        $presenceUtili -> excute([
+                            'id' => $_POST['id'])
+                        $result = $presenceUtili -> fetchAll(PDO::FETCH_ASSOC);
+                    ```
+
 3. **Suppression**
     - Pour supprimer une entrée
         -   ```
