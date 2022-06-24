@@ -24,14 +24,12 @@ $affichAcc = new connectBD();
     <div>
         <?php include('Vues/navbar.php') ?>
     </div>
-    <div class="contenaire  p-10 bg-red-200">
+    <div class="contenaire  p-10">
         <div class="flex">
             <div class="flex-auto w-64">
                 <?php include('Vues/Acceuille.php'); ?>
             </div>
-            
-                <?php include('Formulaire/Login.php'); ?>
-            
+            <?php include('Formulaire/Login.php'); ?>
         </div>
     </div>
 </body>

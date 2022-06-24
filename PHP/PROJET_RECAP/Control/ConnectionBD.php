@@ -39,7 +39,7 @@ class connectBD
     }
 
     public function relTblUtisateurPost(){
-        $bd = $this -> mysqlPDO -> prepare('SELECT u.nom ,p.content, p.tire FROM Utilisateur u INNER JOIN Post p ON u.user_id = p.user_id');
+        $bd = $this -> mysqlPDO -> prepare('SELECT u.nom ,p.contenu, p.titre FROM Utilisateur u INNER JOIN Post p ON u.user_id = p.user_id');
         $bd -> execute();
         $result = $bd -> fetchAll(PDO::FETCH_ASSOC);
         return $result;
