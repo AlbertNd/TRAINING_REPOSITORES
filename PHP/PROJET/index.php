@@ -21,19 +21,28 @@
     // inclusion du controlleur du formulaire de login
     include('App/Controller/loginForm.php');
     // Inclusion du formuaire d'enregistrement
-    include('App/Controller/enregistreFom.php');
+    include('App/Controller/enregistreForm.php');
+    // inclusion du formulaire d'enregistrement
+    include('App/Controller/enregistrePost.php');
+    // Affichage du formaulire de publication de post
+    if(isset($_POST['ajoutPost'])){
+        $_SESSION['AJOUT_POST'] = 1;
+    };
+    // Annulation de l'affichage du formulaire de publication de post
+    if(isset($_POST['Annule'])){
+        $_SESSION['AJOUT_POST'] = 0;
+    };
+
 
     ?>
     <div>
         <?php include('App/Views/Pages/navbar.php') ?>
     </div>
     <div class="px-10">
-        <div class="flex">
+        <div class="">
             <?php include('App/Views/Pages/Acceuille.php'); ?>
-            <?php include('App/Views/Forms/login.php'); ?>
         </div>
     </div>
-
 </body>
 
 </html>
