@@ -32,6 +32,9 @@
     if(isset($_POST['Annule'])){
         $_SESSION['AJOUT_POST'] = 0;
     };
+    // La suppretion d'un post 
+    
+    
 
 
     ?>

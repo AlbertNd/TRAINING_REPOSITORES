@@ -51,12 +51,13 @@ class connectionDataBase
         header("location:/index.php");
     }
 
-    Public function afficheEditerSupprimer($id_user){
-        $editerSupprimer = $this -> dataBase -> prepare('SELECT * FROM Post WHERE id_user = :id_user');
-        $editerSupprimer -> execute([
-            'id_user' => $id_user,
+    Public function suppressionPost($postid){
+        $supprimerPost = $this -> dataBase -> prepare('DELETE FROM Post WHERE post_id = :postid'); 
+        $supprimerPost -> execute([
+            'postid' => $postid,
         ]);
-        $result = $editerSupprimer -> fetchAll(PDO::FETCH_ASSOC); 
-        return $result;
+
+        header("location:/index.php");
     }
+    
 }

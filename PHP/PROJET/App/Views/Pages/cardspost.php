@@ -20,18 +20,22 @@
             <?php if ($_SESSION['LOGGED_USER'] && $_SESSION['LOGGED_STATUS'] === 0) : ?>
                 <input class="bg-green-700 hover:bg-blue-800 py-4 px2 text-center w-full rounded-lg text-white" name="<?php echo $data['post_id'] ?>" value="Postuler">
 
-            <?php elseif ($_SESSION['LOGGED_USER'] && $_SESSION['LOGGED_STATUS'] === 1):?>
-                <?php if ($_SESSION['LOGGED_ID'] === $data['user_id']):?>
-                    <div class="flex">
-                        <input class="bg-green-700 hover:bg-green-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="<?php echo $data['post_id'] ?>" value="Editer">
+            <?php elseif ($_SESSION['LOGGED_USER'] && $_SESSION['LOGGED_STATUS'] === 1) : ?>
+                <?php if ($_SESSION['LOGGED_ID'] === $data['user_id']) : ?>
 
-                        <input class="bg-red-700 hover:bg-red-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="<?php echo $data['post_id'] ?>" value="Supprimer">
+
+                    <div class="flex">
+                        <input class="bg-green-700 hover:bg-green-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="editer" value="Editer">
+
+                        <input class="bg-red-700 hover:bg-red-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="supprimer" value="supprimer">
                     </div>
+
+
                 <?php endif; ?>
             <?php else : ?>
-                <button class="bg-blue-700 hover:bg-blue-800 py-4 px2 text-center w-full rounded-lg text-white">
-                    Connectez vous pour postuler
-                </button>
+                <form action="index.php" method="POST">
+                    <input name="connecter" class="bg-blue-500 py-2 px-4 w-full text-white rounded" type="submit" value="Connectez vou pour postuler">
+                </form>
             <?php endif; ?>
         </div>
 
