@@ -7,8 +7,20 @@
         ?>
 
         <?php
+        if ($_SESSION['EDIT_POST'] === 1) {
+            include('App/Views/Forms/edite.php');
+        }
+        ?>
+
+        <?php
         if (isset($_POST['connecter'])) {
             include('App/Views/Forms/login.php');
+        };
+        ?>
+
+<?php
+        if (isset($_POST['enregistrerUt'])) {
+            include('App/Views/Forms/enregistre.php');
         };
         ?>
 

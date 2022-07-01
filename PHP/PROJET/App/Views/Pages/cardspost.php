@@ -24,18 +24,27 @@
                 <?php if ($_SESSION['LOGGED_ID'] === $data['user_id']) : ?>
 
 
-                    <div class="flex">
-                        <input class="bg-green-700 hover:bg-green-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="editer" value="Editer">
-
-                        <input class="bg-red-700 hover:bg-red-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white" name="supprimer" value="supprimer">
+                    <div class="flex justify-between">
+                        <a href='/index.php?editeId=<?php echo $data['post_id']?>'>
+                            <button class="bg-green-700 hover:bg-green-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white">editer</button>
+                        </a>
+                        
+                        <a href='/index.php?supprimeId=<?php echo $data['post_id']?>'>
+                            <button class="bg-green-700 hover:bg-red-800 py-2 px-2 m-1 text-center w-full rounded-lg text-white">supprimer</button>
+                        </a>
                     </div>
 
 
                 <?php endif; ?>
             <?php else : ?>
-                <form action="index.php" method="POST">
-                    <input name="connecter" class="bg-blue-500 py-2 px-4 w-full text-white rounded" type="submit" value="Connectez vou pour postuler">
-                </form>
+                <div class="">
+                    <form action="index.php" method="POST">
+                        <div class="flex justify-between ">
+                            <input name="connecter" class="bg-blue-500 py-2 px-4 text-white rounded-2xl" type="submit" value="Se connectez">
+                            <input name="enregistrerUt" class="bg-blue-500 py-2 px-4 text-white rounded-2xl" type="submit" value="Créer un compte">
+                        </div>
+                    </form> 
+                </div>
             <?php endif; ?>
         </div>
 

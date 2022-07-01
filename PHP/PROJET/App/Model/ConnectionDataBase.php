@@ -60,4 +60,24 @@ class connectionDataBase
         header("location:/index.php");
     }
     
+    public function selectionDonneeEditerPost($postid){
+        $editerPost = $this -> dataBase -> prepare('SELECT * FROM Post WHERE post_id = :postid');
+        $editerPost -> execute([
+            'postid' => $postid,
+        ]); 
+
+        $result = $editerPost -> fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function editePost($titre, $contenu, $id){
+        $editePost = $this -> dataBase -> prepare('UPDATE Post SET titre = :titre, contenu = :contenu WHERE post_id = :id'); 
+        $editePost -> execute([
+            'titre' => $titre, 
+            'contenu' => $contenu, 
+            'id' => $id
+        ]);
+
+        header("location:/index.php");
+    }
 }

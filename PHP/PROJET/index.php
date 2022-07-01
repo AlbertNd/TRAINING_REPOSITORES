@@ -25,16 +25,31 @@
     // inclusion du formulaire d'enregistrement
     include('App/Controller/enregistrePost.php');
     // Affichage du formaulire de publication de post
-    if(isset($_POST['ajoutPost'])){
+    if (isset($_POST['ajoutPost'])) {
         $_SESSION['AJOUT_POST'] = 1;
+        $_SESSION['EDIT_POST'] = 0;
     };
     // Annulation de l'affichage du formulaire de publication de post
-    if(isset($_POST['Annule'])){
+    if (isset($_POST['Annule'])) {
         $_SESSION['AJOUT_POST'] = 0;
     };
     // La suppretion d'un post 
-    
-    
+    if (isset($_GET['supprimeId'])) {
+        $datas->suppressionPost($_GET['supprimeId']);
+    }
+    // Inclusion du fichier de modification 
+    include('App/Controller/ModificationPost.php');
+    // la modification 
+    if (isset($_GET['editeId'])) {
+        $editPost = $_GET['editeId'];
+        $_SESSION['EDIT_POST'] = 1;
+        $_SESSION['AJOUT_POST'] = 0;
+    }
+    // annulation de l'affichage du formualire de modification 
+    if (isset($_POST['AnnuleEdit'])) {
+        $_SESSION['EDIT_POST'] = 0;
+    }
+
 
 
     ?>

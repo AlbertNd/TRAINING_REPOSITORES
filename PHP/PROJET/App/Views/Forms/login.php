@@ -2,9 +2,9 @@
     <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md ">
         <form action="index.php" method="POST">
 
-            <?php if (isset($message)) : ?>
+            <?php if (isset($logMessage)) : ?>
                 <div class="text-center font-serif ">
-                    <?php echo $message ?>
+                    <?php echo $logMessage ?>
                 </div>
             <?php endif ?>
 
@@ -13,7 +13,7 @@
                 <input class="border rounded w-full py-2 px-3 text-gray-700 mb-2" type="text" name="mail" id="">
             </div>
             <div>
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="pass">Mail</label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="pass">Mot de pass</label>
                 <input class="border rounded w-full py-2 px-3 text-gray-700 mb-4" type="password" name="pass" id="">
             </div>
             <div class="flex items-start">
@@ -27,9 +27,6 @@
             </div>
             <div class="flex justify-center">
                 <button class="bg-green-500 text-white px-4 py-2 m-3 rounded" type="submit">connection</button>
-            </div>
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                Pas enregistrer ? <a href="App/Views/Forms/enregistre.php" class="text-blue-700 hover:underline">Créer un compte</a>
             </div>
         </form>
     </div>

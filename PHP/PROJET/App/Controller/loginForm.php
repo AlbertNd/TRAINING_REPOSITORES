@@ -16,7 +16,7 @@ foreach($connectionBaseDonne -> authentification($mail) as $donnee){
 
 // verification du remplissage des champs
 if(empty($_POST['mail']) || empty('pass')){
-    $message = sprintf('Veuillez introduire vos informations de connection');
+    $logMessage = sprintf('Veuillez introduire vos informations de connection');
 
 // verifcation de l'existance des variables 
 }elseif(isset($_POST['mail']) || isset($_POST['pass'])){
@@ -24,8 +24,8 @@ if(empty($_POST['mail']) || empty('pass')){
         $_SESSION['LOGGED_USER'] = $prenom;
         $_SESSION['LOGGED_ID'] = $user_id;
         $_SESSION['LOGGED_STATUS'] = $status;
-    }else {
-        $message = sprintf('Les information de connection ne sont pas correcte');
+    }else{
+        $logMessage = sprintf('Les information de connection ne sont pas correcte');
     }
 }
 
