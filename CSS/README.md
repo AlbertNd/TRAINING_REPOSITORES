@@ -1,4 +1,5 @@
 # Presentation
+[DevDocs.io](https://devdocs.io/css/)
 [Documentation MDN](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [Site de simulation de selection](https://flukeout.github.io/)
 
@@ -10,6 +11,8 @@
     2. [Combinaison des selecteurs](#combinaison-des-selecteurs)
     2. [Les selecteurs d'attributs](#les-selecteurs-dattribut)
 4. [Les pseudo classes](#les-pseudo-class)
+5. [Model de boite](#le-modele-de-boites)
+    1. [Comportement de la voite vis à vis des autres elements](#comportement-de-la-boite-vis-à-vis-des-autres-elements)
 
 #### La syntaxe 
 
@@ -176,7 +179,9 @@ Selecteur {
 - La boite a plusieurs propriété. 
     - ***Si on ne precise rien en css la largeur est de 100% ( la totalité de l'espace disponible) et la hauteur va dependre du contenu.*** 
 
-##### Comportement de la boite vis ç vis des autres elements
+##### Comportement de la boite vis à vis des autres elements
+
+[Doc display](https://developer.mozilla.org/fr/docs/Web/CSS/Display)
 
 1. **display block** : 
     - Display par defaut,
@@ -193,3 +198,27 @@ Selecteur {
     - Appliquer par defaut sur tout ce qui champs multitext
     - Il se comporte en in line mais on peut leur donner manuellement une hauteur et un largeur 
 
+#### Police et Textes 
+
+##### Les propriéte 
+
+1. **Color :** [Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Color) permet de definir la couleur de texte qui est utilisée.
+    - Elle peut prendre differentes valeur globales
+        1. **inherit** : Valeur utiliser par defaut par la plus part des elements càd que la couleur va etre hérité des ***elements parents***
+        2. Dans la definition des propriétés de style de texte il possible de separée differentes propriétés avec une virgule pour au cas ou le na vigateur n'a pas la premier il regarde la suite et ainsi de suite.
+        3. **word-wrap (overflow-wrap)** : permet de casse un mot trop long
+
+##### Les unittes de mesure 
+
+1. Les unites absolus 
+    - Les pixel **px** : Representent un pixel sur notre ecran. elle donne une dimension fixe 
+
+2. Les Unités relatives 
+    - Les pourcentage **%**: Il va permettre à l'element de prendre le pourcentage de la dinsension definis. 
+        - ***NB: cC'est le % par rapport a son contenneur et non par rapport à la taille de l'ecran***
+        - Cella ne fonction pas de la meme maniere pour la hauteur car la hauteur depend du contenu
+    - Le view port weight **vw** : qui represente le pourcentage de la largeur de la fenetre et pas par rapport à son contenu
+    - Le view port height **vh** : qui represente le pourcentage de la hauteur  de la fenetre et pas par rapport à son contenu
+    - le **vmin et vmax**: prenne la dimension la plus petite/grande entre la hauteur et la largeur et le chiffrsera le pourcentage de cette valleur là. 
+    - le **em**: Permet de spécifier une taille par rapport à la taille de la police de notre element, ou de l'element parent (par exemple dans le cas d'espacement de paragraphe) 
+    - **rem** : depend de la police qui est definis dans la racine ( par rapport à la taill de la police generale . parEx: si on a definis les boby a une taille de 20px, un 1.5rem sera de 30px )
