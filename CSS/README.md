@@ -1,0 +1,195 @@
+# Presentation
+[Documentation MDN](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[Site de simulation de selection](https://flukeout.github.io/)
+
+### Table matiere 
+1. [La syntaxe](#la-syntaxe)
+2. [Placement CSSS](#ou-placer-le-css)
+3. [Les selecteurs](#les-selecteurs)
+    1. [Le Ciblage](#le-ciblage)
+    2. [Combinaison des selecteurs](#combinaison-des-selecteurs)
+    2. [Les selecteurs d'attributs](#les-selecteurs-dattribut)
+4. [Les pseudo classes](#les-pseudo-class)
+
+#### La syntaxe 
+
+- Trois composnat principaux. 
+    1. ##### Le selecteur 
+    2. ##### Les propriétés 
+    3. ##### La valeur 
+```
+Selecteur {
+    propriété: valeur; 
+}
+```
+
+#### Ou placer le CSS 
+
+1. Dans un attribut 
+    ```
+        <div style="propriété : valeur"> </div>
+    ```
+2. Dans l'entete du document 
+    ```
+        <head>
+            <style>
+                selecteur{
+                    propriété: valeur;
+                }
+            </style>
+        </head>
+    ```
+3. Dans un fihier séparé
+    ```
+        <head>
+            <link href="chemin versle fichier" rel="style du document(stylesheet)">
+        </head>
+    ```
+
+#### Les selecteurs 
+
+##### le ciblage. 
+
+1. Pour cibler l'ensembles des balises portant le meme nom :
+    - ``` 
+        h1 {
+            ...
+        }
+      ```
+2. Selection des elements suivant leur **id** ou leur  **class**
+    1. Pour cible la **classe: 
+        - **.** *nom_de_la_classe*
+        ```
+            .titre{
+                ...
+            }    
+        ```
+        - NB: tous les elements ayant ce nom de classe seront affectés 
+    2. Pour cible l'**id**
+        - **#** *nom_id*
+        ```
+            #titre{
+                ...
+            }    
+        ```
+    3. Le selecteur **" * "** 
+        - Va selectionner tous les elements.
+**NB:** 
+1. ***Selon le concepte du cascading style sheet, les valeurs des differentes propriété sont herités depuis les parents***
+    - Exemple si on change la couleur de body: 
+        -   ```
+                body{
+                    color : red;
+                }
+            ```
+    Tous les enfants vont avoir cette propriété color  
+2. ***le style sheet de CSS prend en compte la derniere regle qui s'applique à élement.*** 
+
+    -   ```
+            h1{
+                color: red;
+            }
+            h1{
+                color: green;
+            }
+        ```
+    C'est la couleur green que sera pris en compte.
+    **NB** Il prendra toujours la regle la plus **spécifique**, càd, celle qui sera par exemple nommer ***avec un id ou un class***
+        -   ```
+                .titre{
+                    color: red;
+                }
+                h1{
+                    color: green;
+                }
+            ```
+        Dans ce cas ci, c'est la couleur red qui sera pris en compte.
+
+##### Combinaison des selecteurs 
+
+- Si par exemple on souhaite styliser des balise qui se trouve que dans d'autre pallise parent bien precis.
+- ***Elle fonction aussi bien avec les "id" et les "class"***
+
+1. Combinaison descendante [Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Descendant_combinator)
+    - Deux selecteurs separer par un **espace** 
+        -   ```
+                table h1 {
+                    color: red;
+                }
+            ```
+        - On cible tous les h1 qui on un parent que est une table 
+        - **NB** ***Dans ce cas ci, on est aussi oplus spécifique!! c'est ce contenu qui sera pris en compte ***
+    - ***NB: il est aussi possible d'avoir plusieur niveau de profondeur***
+
+2. Combinaison des enfants direct 
+    - Deux selecteurs separés par un **>**
+3. Combinaison des voisin direct 
+    - (Le voisin direct) Deux selecteurs separés par un **+**
+    - (Tous les voisins direct) Deux selecteur séparés par un **~**
+
+##### Les selecteurs d'attribut 
+
+- [Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Attribute_selectors)
+
+- Permettent de selectionner un eelment par rapport à un des ses attributs
+    - ``` 
+        //Donne un style particulier à tous les liens qui ont un attribut titre
+
+        a[titre] {
+            ...
+        }
+        // Peut parmet de differencier les liens interne et les liens externes
+
+        a[href^="http"]{
+            ...
+        }
+
+        // Les elements ayant un fonction particuliere
+        imput[type="text"]{
+            ...
+        }
+
+      ```    
+- Il est possible de mettre plusieur regles
+    -   ```
+            input[type="text"], input[type="mail"] {
+                ...
+            }
+        ```
+
+#### Les pseudo class
+
+- [Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Pseudo-classes)
+
+- Permettent de donner un style à l'element lorsque l'on fait un action. 
+    -   ```
+            // Donner une couleur rouge à l'element lorsque on le survole avec la sourcis
+            a {
+                color : green;
+            }
+            a:hover{
+                color: red;
+            }
+        ```
+#### Le modele de boites
+
+- La boite a plusieurs propriété. 
+    - ***Si on ne precise rien en css la largeur est de 100% ( la totalité de l'espace disponible) et la hauteur va dependre du contenu.*** 
+
+##### Comportement de la boite vis ç vis des autres elements
+
+1. **display block** : 
+    - Display par defaut,
+    - Il prend la totalité de la largeur, 
+    - Deux element ne peuvent pas etre l'un à cote de l'autre càd que l'element suivant va se situer en dessous
+    - Peut avoir une largeur et une hauteur  que l'on peut precise manuellement 
+2. **Le display inline**:
+    - Le cadre prend par defaut la dimension du mot qu'il entoure
+    - Certainnes balises sont par defaut en display inline. 
+        - Si par exemple il y a un **span** au milieu d'un paragraphe il prendra par defaut la largeur et la hauteur du texte qui l'entoure 
+        - On ne peut pas manuellement precises une largeur et une hauteur.
+3. **Le display inline-block**:
+    - Comportement en mi-chemin entre en ligne et block. 
+    - Appliquer par defaut sur tout ce qui champs multitext
+    - Il se comporte en in line mais on peut leur donner manuellement une hauteur et un largeur 
+
