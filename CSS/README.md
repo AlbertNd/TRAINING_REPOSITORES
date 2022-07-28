@@ -13,6 +13,10 @@
 4. [Les pseudo classes](#les-pseudo-class)
 5. [Model de boite](#le-modele-de-boites)
     1. [Comportement de la voite vis à vis des autres elements](#comportement-de-la-boite-vis-à-vis-des-autres-elements)
+6. [Police et textes](#police-et-textes)
+    1. [Propriété](#les-propriétes)
+    2. [Les unites de mesures](#les-unittes-de-mesure)
+7. [Le positionnement](#le-positionement)
 
 #### La syntaxe 
 
@@ -200,7 +204,7 @@ Selecteur {
 
 #### Police et Textes 
 
-##### Les propriéte 
+##### Les propriétes
 
 1. **Color :** [Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Color) permet de definir la couleur de texte qui est utilisée.
     - Elle peut prendre differentes valeur globales
@@ -222,3 +226,47 @@ Selecteur {
     - le **vmin et vmax**: prenne la dimension la plus petite/grande entre la hauteur et la largeur et le chiffrsera le pourcentage de cette valleur là. 
     - le **em**: Permet de spécifier une taille par rapport à la taille de la police de notre element, ou de l'element parent (par exemple dans le cas d'espacement de paragraphe) 
     - **rem** : depend de la police qui est definis dans la racine ( par rapport à la taill de la police generale . parEx: si on a definis les boby a une taille de 20px, un 1.5rem sera de 30px )
+
+#### Le positionement 
+[Doc](https://developer.mozilla.org/fr/docs/Web/CSS/Position)
+
+1. **static** : par defaut tous les elements sont static 
+2. **absolute** : permet de positionner un element de maniere absolu par rapport a un autre element. 
+    - Il presente un comportement un peu particulier. 
+    - Il va survoler les autres elements et est placer n'importe comment 
+    - Il lorsqu'on definis une position absolute, il va de paire avec 4 autres propriété: 
+        1. top
+        2. left
+        3. right
+        4. bottom
+        - ***Elle permettent de spécifier la position de l'element par raport à la fenettre.***
+            - Si on veut le position tout en haut à gauche
+            -   ```
+                    .element{
+                        position: absolute; 
+                        top:0;
+                        left: 0;
+                    }
+                ```
+3. **fixed**: 
+    - Meme comportement que l'absolute (elle survole ......) 
+    - Elle garde la meme position au scroll de la page ( l'element est figé par raport à la fenetre et non par rapport son parent).
+4. **relative**
+    - Meme comportement que le position static.
+    - Elle permet de precise un decalage en precisant par exemple: 
+        - le top 
+        - le left
+        - le right
+        - le Bottom
+    - Ce decalage peut aussi prendre des valeur negatives
+    - ***Un element qui est en position relative change le comportemant des enfants qui sont en position absolute. 
+        - **L'element en osition absolute va se positionner par rapport au premier parent qui serait en relatif.** 
+            - ***et si il y a aucun element parent en relatif, il va se positionner par raport au body***
+            - ***de la meme maniere si un parent est en absolute aussi il servira de referent***
+5. **sticky**: Permet a l'element de rester fixed jusqu'a ce qu'il quitte l'element parent.
+
+6. **z-index**: 
+    - C'est un axe invisible qui terminela profondeur.
+    - Plus l'element a un z-index elevé, plus il va etre au premier plan
+    - Permet de terminer quelle element se placera au dessus de l'autre lorsque les deux sont absolute 
+    - Il fonctionne sur tout les elements qui ne sont pas static càd egalement les **relative**

@@ -1,4 +1,9 @@
-span {
-    display: block;
-    height : 10px;
+nav{
+    margin: 10px;
+    position : fixed;
+}
+
+.corp {
+    position: relative;
+    top: 70px ;
 }
