@@ -65,6 +65,11 @@ Les animations peuvent etre fait de deux maniere :
         - to : Les valeurs d'arrivé de l'element 
 
         -   ```
+
+                .selecteur {
+                    animation : 2s linear 1s infinite alternate slidedown;
+                }
+
                 @keyframes slideDown{
                     from{
                         transform : translateY(200px);

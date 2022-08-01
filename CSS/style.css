@@ -23,8 +23,18 @@ nav .box-lien a{
 nav h1 {
     font-family: 'Playfair Display SC', serif;
     margin-left: 20px;
-    animation: 3s linear 1s infinite alternate slidein;
+    animation: 2s linear 1s infinite alternate slidein;
+    animation-fill-mode: forwards;
+   
 
+}
+@keyframes slidein {
+    from {
+        margin-left: 20px;
+    }
+    to {
+        margin-left: 100%;
+    }
 }
 
 @media screen and (max-width:500px) {
