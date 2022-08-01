@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Dancing+Script&family=Montserrat&family=Playfair+Display+SC&family=Square+Peg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Cormorant+SC:wght@300&family=Dancing+Script&family=Montserrat&family=Playfair+Display+SC&family=Square+Peg&display=swap');
 
 body{
     margin: 0;
@@ -8,36 +8,80 @@ body{
 nav{
     display: grid;
     width: 100%;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 50% 1fr;
     align-items: center;
+    /*
+    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
+    background-size: cover;
+   */
 }
 nav .box-lien {
     text-align: center;
+    
 }
 nav .box-lien a{
     margin-left: 50px;
     font-family: 'Playfair Display SC', serif;
     text-decoration: none;
+    color: #fff;
 }
 
-nav h1 {
+
+
+.box-log{
+   align-items: center;
+   display: flex;
+   
+}
+
+.box-text{
+    text-align: center;
+    opacity: 0;
+    width: 100%;
+    margin-left: 20%;
+    color: #fff;
     font-family: 'Playfair Display SC', serif;
-    margin-left: 20px;
-    animation: 2s linear 1s infinite alternate slidein;
+    animation: fadeInRight;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+
+.box-logo {
+    position: absolute;
+    top:4px;
+    left: 4px;
+    padding: 0;
+    margin: 0;
+    /*width: 30%;*/
+    text-align: center; 
+   animation-name: slidein ;
+   animation-direction: reverse;
+    animation-duration: 2.5s ;
+    animation-timing-function: linear;
    
 
 }
 @keyframes slidein {
-    from {
-        margin-left: 20px;
+    0% {
+        margin-left: 0px;
+        transform-origin: center;
+        
+        
     }
-    to {
-        margin-left: 100%;
+    50% {
+        margin-left: 30%;
+        
+        
     }
+    100%{margin-left: 10px;
+    }
+    
 }
 
-@media screen and (max-width:500px) {
+
+
+@media screen and (max-width:750px) {
     nav{
         display: block;
     }
@@ -47,4 +91,67 @@ nav h1 {
     nav .box-lien a{
         margin-left: 10px;
     }
+    .box-text {
+        margin-left: 0;
+    }
+}
+
+
+@media  screen and (max-width:450px) {
+    .box-text {
+        font-size: 12px;
+    }
+    .box-header h1 {
+        font-size: 12px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .box-header h4 {
+        font-size: 12px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .box-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+
+@keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+/* header */ 
+
+.box-header {
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: #fff;
+    /*
+    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
+    background-size: cover;
+   */
+}
+.box-header h1 {
+    font-family: 'Cormorant SC', serif;
+    padding: 10px;
+}
+.box-header h4 {
+    font-family: 'Cormorant SC', serif;
+    padding: 10px;
+}
+
+.content-header {
+    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
+    background-size: cover;
 }
