@@ -1,9 +1,40 @@
-nav{
-    margin: 10px;
-    position : fixed;
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Dancing+Script&family=Montserrat&family=Playfair+Display+SC&family=Square+Peg&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
 }
 
-.corp {
-    position: relative;
-    top: 70px ;
+nav{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 30% 1fr;
+    align-items: center;
+}
+nav .box-lien {
+    text-align: center;
+}
+nav .box-lien a{
+    margin-left: 50px;
+    font-family: 'Playfair Display SC', serif;
+    text-decoration: none;
+}
+
+nav h1 {
+    font-family: 'Playfair Display SC', serif;
+    margin-left: 20px;
+    animation: 3s linear 1s infinite alternate slidein;
+
+}
+
+@media screen and (max-width:500px) {
+    nav{
+        display: block;
+    }
+    nav h1 {
+        text-align: center;
+    }
+    nav .box-lien a{
+        margin-left: 10px;
+    }
 }
