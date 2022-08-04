@@ -4,154 +4,99 @@ body{
     margin: 0;
     padding: 0;
 }
-
-nav{
+/* la boite au dessus des liens */
+.box-top {
     display: grid;
-    width: 100%;
-    grid-template-columns: 50% 1fr;
+    grid-template-columns: 30% 1fr 15% 10%;
     align-items: center;
-    /*
-    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
-    background-size: cover;
-   */
+    padding: 5px;
+
 }
-nav .box-lien {
+.box-logo{
     text-align: center;
-    
-}
-nav .box-lien a{
-    margin-left: 50px;
-    font-family: 'Playfair Display SC', serif;
-    text-decoration: none;
-    color: #fff;
-}
-
-
-
-.box-log{
-   align-items: center;
-   display: flex;
-   
-}
-
-.box-text{
-    text-align: center;
-    opacity: 0;
-    width: 100%;
-    margin-left: 20%;
-    color: #fff;
-    font-family: 'Playfair Display SC', serif;
-    animation: fadeInRight;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-    animation-delay: 2s;
-}
-
-.box-logo {
-    position: absolute;
-    top:4px;
-    left: 4px;
     padding: 0;
     margin: 0;
-    /*width: 30%;*/
-    text-align: center; 
-   animation-name: slidein ;
-   animation-direction: reverse;
-    animation-duration: 2.5s ;
-    animation-timing-function: linear;
-   
-
 }
-@keyframes slidein {
-    0% {
-        margin-left: 0px;
-        transform-origin: center;
-        
-        
-    }
-    50% {
-        margin-left: 30%;
-        
-        
-    }
-    100%{margin-left: 10px;
-    }
-    
+.box-lien {
+    text-align: end;
 }
-
-
-
-@media screen and (max-width:750px) {
-    nav{
-        display: block;
-    }
-    nav h1 {
-        text-align: center;
-    }
-    nav .box-lien a{
-        margin-left: 10px;
-    }
-    .box-text {
-        margin-left: 0;
-    }
+.box-lien a {
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.box-con {
+    text-align: center;
+    align-items: center;
+}
+.box-con a {
+    margin-left: 5px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.button-chauf{
+    padding: 10px;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    border: 0;
+    border-radius: 2px;
+    font-size: larger;
+    font-weight: bold;
+}
+.button-chauf a {
+    color: white;
+    text-decoration: none;
 }
 
+/* La boite des liens */
 
-@media  screen and (max-width:450px) {
-    .box-text {
-        font-size: 12px;
-    }
-    .box-header h1 {
-        font-size: 12px;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .box-header h4 {
-        font-size: 12px;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .box-header {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-
-
-@keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-/* header */ 
-
-.box-header {
+.box-nav{
+    width: 100%;
     align-items: center;
     text-align: center;
-    margin-top: 30px;
+    
     padding: 20px;
-    color: #fff;
-    /*
-    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
-    background-size: cover;
-   */
+    background-color: white;
 }
-.box-header h1 {
-    font-family: 'Cormorant SC', serif;
+.box-nav a {
+    text-decoration: none;
     padding: 10px;
-}
-.box-header h4 {
-    font-family: 'Cormorant SC', serif;
-    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
 }
 
-.content-header {
-    background: url("https://c4.wallpaperflare.com/wallpaper/613/607/640/3d-abstract-abstract-neon-glow-teal-wallpaper-thumb.jpg");
-    background-size: cover;
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  
+  .sticky + .content {
+    padding-top: 60px;
+  }
+
+/* La boite de presentation */
+
+.box-titre {
+    align-items: center;
+    text-align: center;
+    
+}
+.box-titre h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+.box-titre h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Boite volant */ 
+
+.box-volant {
+    position: fixed;
+    top: 50%;
 }
