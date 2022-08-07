@@ -7,7 +7,7 @@ body{
 /* la boite au dessus des liens */
 .box-top {
     display: grid;
-    grid-template-columns: 30% 1fr 15% 10%;
+    grid-template-columns: 30% 1fr ;
     align-items: center;
     padding: 5px;
 
@@ -18,39 +18,38 @@ body{
     margin: 0;
 }
 .box-lien {
-    text-align: end;
+    
 }
-.box-lien a {
-    text-decoration: none;
-    color: black;
-    margin-left: 10px;
-    font-family: 'Montserrat', sans-serif;
-}
-.box-con {
-    text-align: center;
+
+
+.box-lien-enfant {
+    display: flex; 
+    justify-content: center;
     align-items: center;
+    
 }
-.box-con a {
-    margin-left: 5px;
-    text-decoration: none;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-}
-.button-chauf{
+.box-lien-enfant li:last-child{
+    border: 1px solid black;
+    border-radius: 30px;
     padding: 10px;
-    background-color: black;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    border: 0;
-    border-radius: 2px;
-    font-size: larger;
-    font-weight: bold;
+    margin-left: 20px;
+    
 }
-.button-chauf a {
-    color: white;
+
+.box-lien-enfant li:nth-child(3n){
+    margin-left: 20px;
+}
+.box-lien-enfant li {
+    list-style-type: none;
+}
+
+.box-lien-enfant li a{
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    padding: 10px;
 }
+
 
 /* La boite des liens */
 
@@ -99,4 +98,41 @@ body{
 .box-volant {
     position: fixed;
     top: 50%;
+}
+
+/* Responsivite */ 
+.menu-button{
+    display: none;
+    float: right;
+    margin-right: 40px;
+
+}
+
+.checkbtn{
+    font-size: 50px;
+}
+
+@media screen and (max-width: 1050px) {
+    /*
+    .box-lien-enfant {
+        display: none;
+    }
+    */
+    .menu-button {
+        display: block;
+    }
+    .box-lien-enfant{
+        position : fixed; 
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        display: block;
+        transition: all .5s;
+    }
+    #check:checked ~ .box-lien-enfant {
+        left: 0;
+    }
 }
