@@ -6,10 +6,10 @@ body{
 }
 /* la boite au dessus des liens */
 .box-top {
-    display: grid;
-    grid-template-columns: 30% 1fr ;
+    display: flex;
     align-items: center;
     padding: 5px;
+    width: 100%;
 
 }
 .box-logo{
@@ -18,7 +18,7 @@ body{
     margin: 0;
 }
 .box-lien {
-    
+    float: right;
 }
 
 
@@ -104,7 +104,7 @@ body{
 .menu-button{
     display: none;
     float: right;
-    margin-right: 40px;
+    margin-right: 100px;
 
 }
 
