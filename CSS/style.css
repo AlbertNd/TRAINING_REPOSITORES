@@ -1,62 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Cormorant+SC:wght@300&family=Dancing+Script&family=Montserrat&family=Playfair+Display+SC&family=Square+Peg&display=swap');
-
 body {
-    padding: 0;
-    margin: 0;
-}
-.box-top {
     display: flex;
+    justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    min-height: 100vh;
 }
-.box-lien-direct {
-    width: 100%;
-    margin-right: 40px;
+
+.parent {
+    display: flex;
+    height: 500px;
+    width: 500px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
     
 }
-.box-logo{
-    margin-left: 20px;
-}
-.box-btn-menu{
-    display: none;
-    width: 100%;
-    text-align: end;
-}
-.check-btn{
-    margin-right: 40px;
-    font-size: 40px;
-}
-#check{
-    display: none;
-}
-.box-lien-direct ul {
-    display: flex;
-    float: right; 
-    align-items: center; 
-}
-.box-lien-direct ul li {
-    list-style-type: none;
-    margin-left: 20px;
-}
-.box-lien-direct ul li:nth-child(3n){
-    margin-left: 100px;
-}
-.box-lien-direct ul li:nth-child(4n){
-    margin-left: 50px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 30px;
-}
-.box-lien-direct ul li a {
-    text-decoration: none;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-}
-@media screen and (max-width: 1000px) {
-    .box-lien-direct {
-        display: none;
-    }
-    .box-btn-menu{
-        display: block;
-    }
+
+.enfant {
+    height: 50%;
+    width: 50%;
+    background-color: green;
 }

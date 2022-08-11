@@ -2,6 +2,9 @@
 [DevDocs.io](https://devdocs.io/css/)
 [Documentation MDN](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [Site de simulation de selection](https://flukeout.github.io/)
+[Liste des propriétés CSS](https://www.pierre-giraud.com/liste-propriete-css-reference/)
+[References des propriété CSS <===> JS](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Properties_Reference)
+[Les propriete et héritage](https://www.w3.org/TR/CSS2/propidx.html)
 
 ### Table matiere 
 1. [La syntaxe](#la-syntaxe)
