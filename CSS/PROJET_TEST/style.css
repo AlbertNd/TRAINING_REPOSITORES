@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Cormorant+SC:wght@300&family=Dancing+Script&family=Montserrat&family=Playfair+Display+SC&family=Square+Peg&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* header */ 
+header{
+    min-height: 80vh;
+}
+/* Top navbar*/
+.topNav{
+    padding: 0 40px;
+}
+.topNavBar{
+    width: 100%;
+    min-height: 60px;
+    background-color: white;
+}
+.topNavBarContent{
+    display: flex;
+    list-style: none;
+    float: right;
+    padding-right: 20px;
+}
+.topNavBarItem{
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+}
+.topNavBarItem:nth-child(2n){
+    margin-left: 40px;
+}
+.topNavBarItem:nth-child(3n){
+    margin-left: 40px;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 5px 10px;
+}
+.topNavBarLink{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+/* Midel navbar */ 
+
+.midNav{
+    padding: 0 40px;
+}
+.sticky{
+    position: fixed;
+    top: 0;
+    padding: 0;
+    width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background-color: white;
+}
+.midNavBar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #11ffee00;
+    align-items: center;
+}
+.midLogo{
+    width:20%;
+    text-align: center;
+}
+.midNavBarContent{
+    list-style: none;
+    display: flex;
+    float: right;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+.midNavBarLink{
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+.hamburger{
+    display: none;
+    height: 50px;
+    width: 50px;
+    padding-top: 5px;
+    margin-right: 40px;
+    align-items: center;
+    
+}
+.bar{
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 8px;
+}
+
+.bar:nth-child(2n){
+    width: calc(100% - 10px);
+}
+/* Responsivité */
+
+@media screen and (max-width: 950px) {
+    .topNav{
+        display: none;
+    }
+    .midNavBarContent{
+        display: none;
+    }
+    .midNav{
+        padding: 0 2px;
+    }
+    .hamburger{
+        display: block;
+    }
+    header{
+        min-height: 100vh;
+    }
+}
+
+/*texte */
+
+.texte{
+    padding: 40px;
+}
