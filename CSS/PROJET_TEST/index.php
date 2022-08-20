@@ -53,15 +53,20 @@
                     <span class="bar"></span>
                 </div>
             </nav>
-
         </div>
     </header>
-
-
-
-
-
     <main>
+        <div class="box-bck">
+            <div class="presentation">
+                <h1>Voila le titre </h1>
+                <h2>et tout le tralala</h2>
+                <h3>et le reste</h3>
+            </div>
+            <div class="image">
+                <img src="bcImag.svg" alt="" srcset="">
+            </div>
+
+        </div>
         <div class="texte">
             <?php include('texte.php'); ?>
         </div>

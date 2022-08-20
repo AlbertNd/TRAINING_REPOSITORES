@@ -8,10 +8,10 @@ var sticky = navBar.offsetTop;
 
 function myFunction(){
     if(window.pageYOffset >= sticky){
-        navBar.classList.add("sticky")
+        navBar.classList.add("sticky");
         midNavBar.style.backgroundColor="white";
     }else{
         navBar.classList.remove('sticky');
-        midNavBar.style.backgroundColor ="#11ffee00";
+        midNavBar.style.backgroundColor ="";
     }
 }

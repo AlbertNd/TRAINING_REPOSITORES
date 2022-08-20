@@ -7,7 +7,8 @@ body{
 }
 /* header */ 
 header{
-    min-height: 80vh;
+    
+    min-height: 20vh;
 }
 /* Top navbar*/
 .topNav{
@@ -16,11 +17,10 @@ header{
 .topNavBar{
     width: 100%;
     min-height: 60px;
-    background-color: white;
+
 }
 .topNavBarContent{
     display: flex;
-    list-style: none;
     float: right;
     padding-right: 20px;
 }
@@ -28,6 +28,7 @@ header{
     display: flex;
     margin-left: 10px;
     align-items: center;
+
 }
 .topNavBarItem:nth-child(2n){
     margin-left: 40px;
@@ -46,23 +47,25 @@ header{
 /* Midel navbar */ 
 
 .midNav{
-    padding: 0 40px;
+    padding: 0;   
 }
 .sticky{
     position: fixed;
     top: 0;
     padding: 0;
     width: 100%;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    background-color: white;
+    animation: grandir 0.5s ease-in-out forwards;
+}
+@keyframes grandir {
+    to{
+        transform: scaleX(1.05);
+        
+    }
 }
 .midNavBar{
     display: flex;
     width: 100%;
     justify-content: space-between;
-    background-color: #11ffee00;
-    align-items: center;
 }
 .midLogo{
     width:20%;
@@ -72,20 +75,23 @@ header{
     list-style: none;
     display: flex;
     float: right;
-    width: 80%;
-    justify-content: space-between;
+    width: 70%;
+    justify-content: center;
     align-items: center;
     padding-right: 20px;
 }
+
 .midNavBarLink{
     color: black;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
+    margin-left: 20px;
 }
 .hamburger{
     display: none;
     height: 50px;
     width: 50px;
+    margin-top: 5px;
     padding-top: 5px;
     margin-right: 40px;
     align-items: center;
@@ -124,8 +130,32 @@ header{
     }
 }
 
+.box-bck{
+    display: flex;
+}
+
+.presentation{
+    display: block;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+
+}
+.image{
+    display: block;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+}
 /*texte */
+
+
+
+
+
+
 
 .texte{
     padding: 40px;
+    
 }
